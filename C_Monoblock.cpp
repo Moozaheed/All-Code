@@ -1,0 +1,142 @@
+//Bismillahir Rahmanir Rahim
+#include<bits/stdc++.h>
+#define ull unsigned long long
+#define ll long long
+#define pb push_back
+#define mp make_pair
+#define pob pop_back
+#define in insert
+#define vi vector<ll int>
+#define vs vector<string>
+#define pii pair<ll int,ll int>
+#define psi pair<string,ll int>
+#define pis pair<ll int,string>
+#define mii map<ll int,ll int>
+#define mib map<ll int,bool>
+#define msi map<string,ll int>
+#define mis map<ll int,string>
+#define S string
+#define fi first
+#define se second
+#define sp ' '
+#define dl "\n"
+#define all(data) data.begin(),data.end()
+#define b() begin()
+#define e() end()
+#define cY cout<<"YES\n"
+#define cN cout<<"NO\n"
+#define cy cout<<"Yes\n"
+#define cn cout<<"No\n"
+#define setp(n) setprecision(n)
+#define mem(a,val) memset(a,val,sizeof(a));
+#define debug(x) cerr<<x<<dl;
+#define here fprintf(stderr, "====I am Here====\n");
+#define FOR(data) for(auto it=data.begin();it!=data.end();it++)
+#define Boost ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL)
+#define maxx 100005
+#define EPS 1e-9
+using namespace std;
+const double PI = acos(-1);
+ll int hp = 1e9+7;
+
+
+
+
+void Boom()
+{
+    //Let's Move
+    
+
+    ll int n,m;
+    cin>>n>>m;
+    ll int a[n+1];
+    ll int cnt[n+1];
+    for(int i=1;i<=n;i++)cin>>a[i];
+
+    ll int ans=0;
+    ll int taken=0;
+    for(int i=n;i>=1;i--)
+    {
+        if(i==n)
+        {
+            cnt[i]=1;
+            taken++;
+            ans=1;
+            continue;
+        }
+        if(a[i]==a[i+1])
+        {
+            cnt[i]=cnt[i+1]+1;
+        }
+        else
+        {
+            cnt[i]=1+taken+cnt[i+1];
+        }
+        ans+=cnt[i];
+        taken++;
+    }
+    //cerr<<ans<<dl;
+    //for(int i=1;i<=n;i++)cerr<<cnt[i]<<sp;
+
+
+    while(m--)
+    {
+        int i,X;
+        cin>>i>>X;
+        if(a[i]==X)
+        {
+            // no change
+            cout<<ans<<endl;
+            continue;
+        }
+ 
+        if(i!=1 && a[i]!=a[i-1] && X==a[i-1])
+        {
+            ll dec = (n-i+1)*(i-1);
+            ans-=dec;
+        }
+
+        if(i!=n && a[i]!=a[i+1] && X==a[i+1])
+        {
+            ll dec = (n-(i+1)+1)*((i+1)-1);
+            ans-=dec;
+        }
+ 
+        if(i!=1 && a[i]==a[i-1] && X!=a[i-1])
+        {
+            ll inc = (n-i+1)*(i-1);
+            ans+=inc;
+        }
+        if(i!=n && a[i]==a[i+1] && X!=a[i+1])
+        {
+            ll inc = (n-(i+1)+1)*((i+1)-1);
+            ans+=inc;
+        }
+ 
+        a[i]=X;
+ 
+        cout<<ans<<dl;
+    }
+    
+
+      
+
+
+
+
+}
+
+int main()
+{
+    Boost;
+
+    int t=1;     //  cin>>t;
+    for(int i=1;i<=t;i++)
+    {
+        //cout<<"Case "<<i<<" : ";
+        Boom();
+    }
+
+    return 0;
+
+}
