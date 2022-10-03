@@ -39,7 +39,10 @@ using namespace std;
 const double PI = acos(-1);
 ll int hp = 1e9+7;
 
-
+ll int ceil(ll int x,ll int y)
+{
+    return (x+(y-1))/y;
+}   
 
 
 void Boom()
@@ -48,17 +51,15 @@ void Boom()
 
     ll int n;
     cin>>n;
+    ll int arr[n];
 
-    for(int i=1;i<=n;i++)
-    {
-        for(int j=1;j<=i;j++)
-        {
-            if(j==1 || j==i)cout<<1<<sp;
-            else cout<<0<<sp;
-        }
-        cout<<dl;
-    }
+    for(ll int i=0;i<n;i++)cin>>arr[i];
 
+    ll int p=(arr[0]*2)-1;
+    ll int ans=0;
+    for(ll int i=0;i<n;i++) ans+=ceil(arr[i],p)-1;
+    
+    cout<<ans<<dl;
 
 
 

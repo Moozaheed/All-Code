@@ -46,18 +46,10 @@ void Boom()
 {
     //Let's Move
 
-    ll int n;
-    cin>>n;
+    ll int m;
+    cin>>m;
 
-    for(int i=1;i<=n;i++)
-    {
-        for(int j=1;j<=i;j++)
-        {
-            if(j==1 || j==i)cout<<1<<sp;
-            else cout<<0<<sp;
-        }
-        cout<<dl;
-    }
+    cout<<(m/3)-(2)<<dl;
 
 
 
