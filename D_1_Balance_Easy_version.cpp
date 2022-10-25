@@ -46,49 +46,26 @@ void Boom()
 {
     //Let's Move
 
-    
+    ll int n;
+    cin>>n;
+    map<ll int,ll int>mop;
+    while(n--)
+    {
+        
+        char c;
+        ll int x;
+        cin>>c>>x;
 
+        //cerr<<x<<sp<<c<<dl;
 
-
-
-
-
-int n;
-cin>>n;
-int arr[n];
-
-for(int i=0;i<n;i++)
-{
-    cin>>arr[i];
-    arr[i]+=10;
-}
-
-for(int i=0;i<n;i++)
-{
-    cout<<arr[i]<<" ";
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        if(c=='+')mop[x]=1;
+        if(c=='?')
+        {
+            while(mop[x*mop[x]])mop[x]+=1;
+            cout<<x*max(1LL,mop[x])<<dl;
+            
+        }
+    }
 
 
 

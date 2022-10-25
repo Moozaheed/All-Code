@@ -46,45 +46,53 @@ void Boom()
 {
     //Let's Move
 
-    
+    int n;
+    cin>>n;
+
+    ll int arr[n];
+
+    ll int gc;
+    ll int cs[n];
+
+    for(int i=0;i<n;i++)
+    {
+        cin>>arr[i];
+        if(i==0)gc=arr[i];
+        gc=__gcd(gc,arr[i]);
+
+        cs[i]=gc;
+    }
+
+    //cerr<<gc<<dl;
+
+    if(gc==1)
+    {
+        cout<<0<<dl;
+        return;
+    }
 
 
+    for(ll int i=n-1;i>=0;i--)
+    {
+        ll int k=__gcd(arr[i],i+1);
+
+        for(int j=0;j<n;j++)
+        {
+            if(i==j)continue;
+            k=__gcd(arr[j],k);
+        }
+        
 
 
+        if(k==1)
+        {
+            cout<<min(3LL,n-i)<<dl;
+            return;
+        }
 
+    }
 
-int n;
-cin>>n;
-int arr[n];
-
-for(int i=0;i<n;i++)
-{
-    cin>>arr[i];
-    arr[i]+=10;
-}
-
-for(int i=0;i<n;i++)
-{
-    cout<<arr[i]<<" ";
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    cout<<-1<<endl;
 
 
 
@@ -99,7 +107,7 @@ int main()
 {
     Boost;
 
-    int t=1;       //cin>>t;
+    int t=1;       cin>>t;
     for(int i=1;i<=t;i++)
     {
         //cout<<"Case "<<i<<" : ";

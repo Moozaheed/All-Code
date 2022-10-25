@@ -46,45 +46,66 @@ void Boom()
 {
     //Let's Move
 
+    ll int n;
+    S str;
+    cin>>n>>str;
+
+
+    int i=0;
+    bool ok=1;
     
+    if(str[0]=='0')
+    {
+        ok=0;
+        while(i<n && str[i]=='0' )i++;
+        
+        while(i<n && str[i]=='1')i++;
 
+        if(i==n)
+        {
+            cout<<0<<dl;
+            return;
+        }
 
+    } 
+    else
+    {
+        while(i<n &&  str[i]=='1')i++;
+        if(i==n)
+        {
+            cout<<0<<dl;
+            return;
+        }
+        while(i<n &&  str[i]=='0')i++;
+        if(i==n)
+        {
+            cout<<1<<dl;
+            return;
+        }
+    }
 
+    //cerr<<i<<dl;
 
+    int cnt=0;
+   // i--;
 
+    for(i;i<n;)
+    {
+        if(str[i]=='0')
+        {
+            while(i<n && str[i]=='0')i++;
+            cnt++;
+            continue;
+        }
+        if(str[i]=='1')
+        {
+            while(i<n && str[i]=='1')i++;
+            cnt++;
+        }
+    }
 
-int n;
-cin>>n;
-int arr[n];
-
-for(int i=0;i<n;i++)
-{
-    cin>>arr[i];
-    arr[i]+=10;
-}
-
-for(int i=0;i<n;i++)
-{
-    cout<<arr[i]<<" ";
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    if(ok==0)cout<<cnt<<dl;
+    else cout<<cnt+1<<dl;
 
 
 
@@ -99,7 +120,7 @@ int main()
 {
     Boost;
 
-    int t=1;       //cin>>t;
+    int t=1;       cin>>t;
     for(int i=1;i<=t;i++)
     {
         //cout<<"Case "<<i<<" : ";

@@ -40,56 +40,85 @@ const double PI = acos(-1);
 ll int hp = 1e9+7;
 
 
+int sum(ll int a)
+{
+    return (a+a)-(a^a);
+
+}
+
+int sum1(ll int a,ll int b)
+{
+    return (a+b)-(a^b);
+
+}
+
+
+int sum2(ll int a,ll int b,ll int c)
+{
+    return (a+b+c)-(a^b^c);
+
+}
 
 
 void Boom()
 {
     //Let's Move
 
+    ll int n,q;
+    cin>>n>>q;
+
+    ll int arr[n];
+    for(int i=0;i<n;i++)
+    {
+        cin>>arr[i];
+    }
+
     
+    while(q--)
+    {
+        int s,t;
+        int a,b;
+        cin>>a>>b;
+        a--,b--;
+        
+        ll int mx=0;
+        for(int i=a;i<=b;i++)
+        {
+            ll int p=sum(arr[i]);
+            if(p>mx)
+            {
+                mx=p;
+                s=i+1;
+                t=i+1;
+            }
+        }
+
+        for(int i=a;i+1<=b;i++)
+        {
+            ll int p=sum1(arr[i],arr[i+1]);
+            if(p>mx)
+            {
+                mx=p;
+                s=i+1;
+                t=i+2;
+            }
+        }
+
+        for(int i=a;i+2<=b;i++)
+        {
+            ll int p=sum2(arr[i],arr[i+1],arr[i+2]);
+            if(p>mx)
+            {
+                mx=p;
+                s=i+1;
+                t=i+3;
+            }
+        }
+        cout<<s<<sp<<t<<dl;
 
 
 
-
-
-
-int n;
-cin>>n;
-int arr[n];
-
-for(int i=0;i<n;i++)
-{
-    cin>>arr[i];
-    arr[i]+=10;
-}
-
-for(int i=0;i<n;i++)
-{
-    cout<<arr[i]<<" ";
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    }
 
 
 
@@ -99,7 +128,7 @@ int main()
 {
     Boost;
 
-    int t=1;       //cin>>t;
+    int t=1;       cin>>t;
     for(int i=1;i<=t;i++)
     {
         //cout<<"Case "<<i<<" : ";
