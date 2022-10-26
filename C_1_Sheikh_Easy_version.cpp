@@ -40,24 +40,6 @@ const double PI = acos(-1);
 ll int hp = 1e9+7;
 
 
-int sum(ll int a)
-{
-    return (a+a)-(a^a);
-
-}
-
-int sum1(ll int a,ll int b)
-{
-    return (a+b)-(a^b);
-
-}
-
-
-int sum2(ll int a,ll int b,ll int c)
-{
-    return (a+b+c)-(a^b^c);
-
-}
 
 
 void Boom()
@@ -67,58 +49,52 @@ void Boom()
     ll int n,q;
     cin>>n>>q;
 
-    ll int arr[n];
-    for(int i=0;i<n;i++)
+    ll int arr[n+1]={};
+    ll int pre[n+1]={},xo[n+1]={};
+
+    ll int sum=0,x=0;
+    for(int i=1;i<=n;i++)
     {
         cin>>arr[i];
+        if(i==1)pre[i]=xo[i]=arr[i];
+        else pre[i]=pre[i-1]+arr[i],xo[i]=xo[i-1]^arr[i];
     }
+    ll int mx=(pre[n]-pre[0])-(xo[n]^xo[0]);
 
-    
+   // cerr<<mx<<dl;
+
+    ll int l=1,r=n;
+    int ansl=1,ansr=n;
+
+     while(l<=r)
+        {
+            int mid=(l+r)/2;
+            bool ok=false;
+
+            for(int i=1;i<=n-mid+1;i++)
+            {
+                if((pre[i+mid-1]-pre[i-1])-(xo[i+mid-1]^xo[i-1])==mx)
+                {
+                    ansl=i;
+                    ansr=i+mid-1;
+                    ok=true;
+                    break;
+                }
+            }
+
+            if(ok)r=mid-1;
+            else l=mid+1;
+        }
+
+
     while(q--)
     {
-        int s,t;
-        int a,b;
-        cin>>a>>b;
-        a--,b--;
-        
-        ll int mx=0;
-        for(int i=a;i<=b;i++)
-        {
-            ll int p=sum(arr[i]);
-            if(p>mx)
-            {
-                mx=p;
-                s=i+1;
-                t=i+1;
-            }
-        }
+        ll int l,r;
+        cin>>l>>r;
 
-        for(int i=a;i+1<=b;i++)
-        {
-            ll int p=sum1(arr[i],arr[i+1]);
-            if(p>mx)
-            {
-                mx=p;
-                s=i+1;
-                t=i+2;
-            }
-        }
-
-        for(int i=a;i+2<=b;i++)
-        {
-            ll int p=sum2(arr[i],arr[i+1],arr[i+2]);
-            if(p>mx)
-            {
-                mx=p;
-                s=i+1;
-                t=i+3;
-            }
-        }
-        cout<<s<<sp<<t<<dl;
-
-
-
+        cout<<ansl<<sp<<ansr<<dl;
     }
+
 
 
 

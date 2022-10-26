@@ -46,50 +46,65 @@ void Boom()
 {
     //Let's Move
 
-    int n;
-    cin>>n;
-    int arr[n+1];
-    vi pos;
+    ll int n,q;
+    cin>>n>>q;
+
+    ll int arr[n+1]={};
+    ll int pre[n+1]={},xo[n+1]={};
+
+    ll int sum=0,x=0;
     for(int i=1;i<=n;i++)
     {
-        cin>>arr[i]; 
-        if(abs(arr[i])==1)pos.pb(i);
-
+        cin>>arr[i];
+        if(i==1)pre[i]=xo[i]=arr[i];
+        else pre[i]=pre[i-1]+arr[i],xo[i]=xo[i-1]^arr[i];
     }
-    if(pos.size()%2==1)
+   
+
+   // cerr<<mx<<dl;
+
+    
+
+
+    while(q--)
     {
-        cout<<-1<<endl;
-        return;
+        ll int l,r;
+        cin>>l>>r;
+
+        ll int mx=(pre[r-1]-pre[l-1])-(xo[r-1]^xo[l-1]);
+
+        //ll int l=1,r=n;
+    int ansl=l,ansr=r;
+    int p=l;
+    int q=r;
+
+     while(l<=r)
+        {
+            int mid=(l+r)/2;
+            bool ok=false;
+
+            for(int i=p;i<=q-mid+1;i++)
+            {
+                if((pre[i+mid-1]-pre[i-1])-(xo[i+mid-1]^xo[i-1])==mx)
+                {
+                    ansl=i;
+                    ansr=i+mid-1;
+                    ok=true;
+                    break;
+                }
+            }
+
+            if(ok)r=mid-1;
+            else l=mid+1;
+        }
+
+
+
+        cout<<ansl<<sp<<ansr<<dl;
     }
-    vector<pii>ans;
-    int pre=1;
-    for(int i=0;i<pos.size();i+=2)
-    {
-        int s=pos[i],t=pos[i+1];
-        int p=arr[s],q=arr[t];
 
-        if(p!=q)
-        {
-            for(pre;pre<=t;pre++) ans.pb({pre,pre});   
-        }
-        else if(s+1==t)
-        {
-            for(pre;pre<s;pre++)ans.pb({pre,pre});
-            ans.pb({s,t});
-            pre=t+1;
-        }
-        else
-        {
-            for(pre;pre<t-1;pre++)ans.pb({pre,pre});
-            ans.pb({t-1,t});
-            pre+=2;
-        }
 
-    }
 
-   for(pre;pre<=n;pre++)ans.pb({pre,pre});
-   cout<<ans.size()<<dl;
-   for(auto x:ans)cout<<x.fi<<sp<<x.se<<dl;
 
 }
 
