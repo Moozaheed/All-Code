@@ -39,70 +39,41 @@ using namespace std;
 const double PI = acos(-1);
 ll int hp = 1e9+7;
 
-bool fun(int arr[],int n,int mid)
-{
-    multiset<int>ss;
-    for(int i=0;i<n;i++)ss.in(arr[i]);
 
-    //cerr<<mid<<" Mid ";
-    for(mid;mid>=1;mid--)
-    {
-
-        // for(auto x:ss)cerr<<x<<sp;
-        // cerr<<dl;
-
-        if(*ss.b()>mid)return false;
-
-        auto it=upper_bound(all(ss),mid);
-        it--;
-        
-        ss.erase(it);
-        if(ss.size()==0)
-        {
-            mid--;
-            break;
-        }
-        
-        int k=*ss.b();
-        ss.erase(ss.b());
-        ss.in(k+mid);
-
-
-    }
-    if(mid==0)return true;
-    return false;
-    
-}
 
 
 void Boom()
 {
     //Let's Move
 
-    int n;
-    cin>>n;
-    int arr[n];
-    for(int i=0;i<n;i++)cin>>arr[i];
+    S s1,s2;
+    cin>>s1>>s2;
 
-    int l=1,r=n;
-    int ans=0;
-    while(l<=r)
+
+    char a=s1[s1.size()-1];
+    char b=s2[s2.size()-1];
+
+    if(a==b)
     {
-        //cerr<<l<<sp<<r<<dl;
-        int mid=(l+r)/2;
-        //cerr<<mid<<sp;
-        if(fun(arr,n,mid))
+        if(s1.size()==s2.size())cout<<"="<<dl;
+        else if(a=='S')
         {
-            
-            l=mid+1;
-            ans=mid;
+            if(s1.size()>s2.size())cout<<'<'<<dl;
+            else cout<<'>'<<dl;
         }
-        else r=mid-1;
+        else
+        {
+            if(s1.size()>s2.size())cout<<'>'<<dl;
+            else cout<<'<'<<dl;
+        }
 
-        
     }
 
-    cout<<ans<<dl;
+    else
+    {
+        if(a>b)cout<<'<'<<dl;
+        else cout<<'>'<<dl;
+    }
 
 
 
@@ -123,4 +94,3 @@ int main()
     return 0;
 
 }
-

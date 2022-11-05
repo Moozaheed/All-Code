@@ -39,70 +39,63 @@ using namespace std;
 const double PI = acos(-1);
 ll int hp = 1e9+7;
 
-bool fun(int arr[],int n,int mid)
-{
-    multiset<int>ss;
-    for(int i=0;i<n;i++)ss.in(arr[i]);
 
-    //cerr<<mid<<" Mid ";
-    for(mid;mid>=1;mid--)
-    {
-
-        // for(auto x:ss)cerr<<x<<sp;
-        // cerr<<dl;
-
-        if(*ss.b()>mid)return false;
-
-        auto it=upper_bound(all(ss),mid);
-        it--;
-        
-        ss.erase(it);
-        if(ss.size()==0)
-        {
-            mid--;
-            break;
-        }
-        
-        int k=*ss.b();
-        ss.erase(ss.b());
-        ss.in(k+mid);
-
-
-    }
-    if(mid==0)return true;
-    return false;
-    
-}
 
 
 void Boom()
 {
     //Let's Move
 
-    int n;
-    cin>>n;
-    int arr[n];
-    for(int i=0;i<n;i++)cin>>arr[i];
+    ll int n;
+    S str;
+    cin>>n>>str;
 
-    int l=1,r=n;
-    int ans=0;
-    while(l<=r)
+    vector<pii>pos;
+
+    for(int i=0;i<n;i++)
     {
-        //cerr<<l<<sp<<r<<dl;
-        int mid=(l+r)/2;
-        //cerr<<mid<<sp;
-        if(fun(arr,n,mid))
+        int p=i;
+        if(str[i]=='1')
         {
-            
-            l=mid+1;
-            ans=mid;
+            while(str[i]=='1' && i<n)i++;
+            pos.pb({p+1,i});
         }
-        else r=mid-1;
 
-        
+    
     }
 
-    cout<<ans<<dl;
+
+    //for(auto x:pos)cerr<<x.fi<<sp<<x.se<<dl;
+
+
+    int arr[n+1];
+    int sum=0;
+    arr[0]=0;
+
+    for(int i=1;i<=n;i++)
+    {
+        cin>>arr[i];
+        if(str[i-1]=='1')sum+=arr[i]; 
+        
+    }
+    //cout<<sum<<sp;
+
+    for(auto x:pos)
+    {
+        if(x.fi==1)continue;
+        int sum2=arr[x.fi-1];
+
+        int k=min_element(arr+x.fi,arr+x.se+1)-arr;
+        k=arr[k];
+       // cerr<<sum2<<sp<<k<<dl;
+        sum-=k;
+        sum+=max(sum2,k);
+    }
+    cout<<sum<<dl;
+
+    
+
+ 
 
 
 
@@ -123,4 +116,3 @@ int main()
     return 0;
 
 }
-

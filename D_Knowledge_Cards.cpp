@@ -23,8 +23,8 @@
 #define all(data) data.begin(),data.end()
 #define b() begin()
 #define e() end()
-#define cY cout<<"YES\n"
-#define cN cout<<"NO\n"
+#define cY cout<<"YA\n"
+#define cN cout<<"TIDAK\n"
 #define cy cout<<"Yes\n"
 #define cn cout<<"No\n"
 #define setp(n) setprecision(n)
@@ -39,70 +39,51 @@ using namespace std;
 const double PI = acos(-1);
 ll int hp = 1e9+7;
 
-bool fun(int arr[],int n,int mid)
-{
-    multiset<int>ss;
-    for(int i=0;i<n;i++)ss.in(arr[i]);
 
-    //cerr<<mid<<" Mid ";
-    for(mid;mid>=1;mid--)
-    {
-
-        // for(auto x:ss)cerr<<x<<sp;
-        // cerr<<dl;
-
-        if(*ss.b()>mid)return false;
-
-        auto it=upper_bound(all(ss),mid);
-        it--;
-        
-        ss.erase(it);
-        if(ss.size()==0)
-        {
-            mid--;
-            break;
-        }
-        
-        int k=*ss.b();
-        ss.erase(ss.b());
-        ss.in(k+mid);
-
-
-    }
-    if(mid==0)return true;
-    return false;
-    
-}
 
 
 void Boom()
 {
     //Let's Move
 
-    int n;
-    cin>>n;
-    int arr[n];
+    int n,m,k;
+    cin>>n>>m>>k;
+    int arr[k];
+
     for(int i=0;i<n;i++)cin>>arr[i];
 
-    int l=1,r=n;
-    int ans=0;
-    while(l<=r)
+    set<int, greater<int> > st;
+    int p=k;
+    int i=0;
+    int z=k;
+    int kali=(n*m)-3;
+    while(1)
     {
-        //cerr<<l<<sp<<r<<dl;
-        int mid=(l+r)/2;
-        //cerr<<mid<<sp;
-        if(fun(arr,n,mid))
-        {
-            
-            l=mid+1;
-            ans=mid;
-        }
-        else r=mid-1;
-
         
+        if(i<z && arr[i]==k)
+        {
+            k--;
+            i++;
+        }
+        else
+        {
+            if(i<z)st.in(arr[i]);
+            i++;
+            while(*st.b()==k)
+            {
+                k--;
+                st.erase(st.b());
+            }
+            if(st.size()>=kali){
+                cN;
+                return;
+            }
+
+        }
+        if(k==0 || i==z)break;
     }
 
-    cout<<ans<<dl;
+    cY;
 
 
 
@@ -123,4 +104,3 @@ int main()
     return 0;
 
 }
-

@@ -39,40 +39,7 @@ using namespace std;
 const double PI = acos(-1);
 ll int hp = 1e9+7;
 
-bool fun(int arr[],int n,int mid)
-{
-    multiset<int>ss;
-    for(int i=0;i<n;i++)ss.in(arr[i]);
 
-    //cerr<<mid<<" Mid ";
-    for(mid;mid>=1;mid--)
-    {
-
-        // for(auto x:ss)cerr<<x<<sp;
-        // cerr<<dl;
-
-        if(*ss.b()>mid)return false;
-
-        auto it=upper_bound(all(ss),mid);
-        it--;
-        
-        ss.erase(it);
-        if(ss.size()==0)
-        {
-            mid--;
-            break;
-        }
-        
-        int k=*ss.b();
-        ss.erase(ss.b());
-        ss.in(k+mid);
-
-
-    }
-    if(mid==0)return true;
-    return false;
-    
-}
 
 
 void Boom()
@@ -81,28 +48,21 @@ void Boom()
 
     int n;
     cin>>n;
-    int arr[n];
-    for(int i=0;i<n;i++)cin>>arr[i];
+    
 
-    int l=1,r=n;
-    int ans=0;
-    while(l<=r)
+
+    cout<<n/2+n%2<<dl;
+
+    int l=1;
+    int r=3*n;
+    
+    while(l<r)
     {
-        //cerr<<l<<sp<<r<<dl;
-        int mid=(l+r)/2;
-        //cerr<<mid<<sp;
-        if(fun(arr,n,mid))
-        {
-            
-            l=mid+1;
-            ans=mid;
-        }
-        else r=mid-1;
-
-        
+        cout<<l<<sp<<r<<dl;
+        l+=3;
+        r-=3;
     }
 
-    cout<<ans<<dl;
 
 
 
@@ -123,4 +83,3 @@ int main()
     return 0;
 
 }
-
