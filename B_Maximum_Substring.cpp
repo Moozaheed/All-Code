@@ -46,41 +46,34 @@ void Boom()
 {
     //Let's Move
 
-   int n;
-	cin >> n;
-	vector<int> pos, neg, a;
-	for (int i = 0; i < n; i++) {
-		int x; cin >> x;
-		if (x > 0) {pos.push_back(x);}
-		else if (x < 0) {neg.push_back(x);}
-		else {
-			if (a.size() < 2) {a.push_back(x);}
-		}
-	}
-    if (pos.size() > 2 || neg.size() > 2)
-    {
-        cN;
-        return;
-    }
-    for (int i : pos) a.push_back(i);
-	for (int i : neg) a.push_back(i);
+    ll int n;
+    S str;
+    cin>>n>>str;
 
-    for (int i = 0; i < a.size(); i++) 
-	{
-		for (int j = i + 1; j < a.size(); j++) 
-		{
-			for (int k = j + 1; k < a.size(); k++) 
-            {
-				bool ok = false;
-				for (int l = 0; l < a.size(); l++) 
-                {
-					if (a[i] + a[j] + a[k] == a[l]) ok = true;
-				}
-				if (!ok) {cN; return;}
-			}
-		}
-	}
-	cY;
+    ll int cnt1=0,cnt2=0;
+    ll int to1=0,to2=0;
+
+    for(int i=0;i<n;i++)
+    {
+        ll int x=0;
+        while(str[i]=='1')x++,i++;
+        ll int y=0;
+        while(str[i]=='0')y++,i++;
+
+        to1+=x;
+        to2+=y;
+
+        cnt1=max(cnt1,x);
+        cnt2=max(cnt2,y);
+        i--;
+
+    }
+
+  ///  cerr<<cnt1<<sp<<cnt2<<dl;
+
+    cout<<max({cnt1*cnt1,cnt2*cnt2,to1*to2})<<dl;
+
+
 
 
 }
