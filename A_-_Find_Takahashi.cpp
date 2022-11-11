@@ -69,10 +69,12 @@ for(int i=1;i<=n;i++)
         mx=k;
         pos=i;
     }
+
+
+
 }
 
 cout<<pos<<endl;
-
 
 
 

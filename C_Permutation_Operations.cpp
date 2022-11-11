@@ -73,6 +73,23 @@ void Boom()
 
 
 
+
+
+
+
+
+
+queue<int> q;
+q.insert(10);
+
+
+
+
+
+
+
+
+
 }
 
 int main()

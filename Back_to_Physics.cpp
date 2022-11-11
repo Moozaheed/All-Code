@@ -46,9 +46,9 @@ void Boom()
 {
     //Let's Move
 
-    ll int i,r,t;
+    long long int i,r,t;
     cin>>i>>r>>t;
-    cout<<i*i*r*t<<dl;
+    cout<<i*i*r*t<<endl;
 
 
 

@@ -46,44 +46,38 @@ void Boom()
 {
     //Let's Move
 
-    int n,m,k;
+    ll int n,m,k;
     cin>>n>>m>>k;
-    int arr[k];
 
-    for(int i=0;i<n;i++)cin>>arr[i];
+    vector<pii>st;
 
-    set<int, greater<int> > st;
-    int p=k;
-    int i=0;
-    int z=k;
-    int kali=(n*m)-3;
-    while(1)
+    for(ll int i=0;i<k;i++)
     {
-        
-        if(i<z && arr[i]==k)
-        {
-            k--;
-            i++;
-        }
-        else
-        {
-            if(i<z)st.in(arr[i]);
-            i++;
-            while(*st.b()==k)
-            {
-                k--;
-                st.erase(st.b());
-            }
-            if(st.size()>=kali){
-                cN;
-                return;
-            }
+        ll int tt;
+        cin>>tt;
+        st.pb({tt,i+1});
+    }
+    sort(all(st));
+    reverse(all(st));
 
+    ll int pos=0;
+    ll int  cnt =0;
+    ll int kali=(n*m)-3;
+
+    for(auto x:st)
+    {
+        cnt++;
+        if(pos<x.se)pos=x.se;
+        pos-=cnt;
+        if(pos>=kali)
+        {
+            cN;
+            return;
         }
-        if(k==0 || i==z)break;
     }
 
     cY;
+
 
 
 

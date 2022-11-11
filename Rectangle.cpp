@@ -56,13 +56,13 @@ void Boom()
         double ar1=h1*w1;
         double ar2=h2*w2;
 
-        if(ar1>ar2)cout<<"First rectangle is larger"<<dl;
-        else if(ar2>ar1)cout<<"Second rectangle is larger"<<dl;
+        if(ar1>ar2)cout<<"First rectangle is larger"<<endl;
+        else if(ar2>ar1)cout<<"Second rectangle is larger"<<endl;
         else
         {
-            if(h1>h2)cout<<"First rectangle is larger"<<dl;
-            else if(h2>h1)cout<<"Second rectangle is larger"<<dl;
-            else cout<<"Same rectangle"<<dl;
+            if(h1>h2)cout<<"First rectangle is larger"<<endl;
+            else if(h2>h1)cout<<"Second rectangle is larger"<<endl;
+            else cout<<"Same rectangle"<<endl;
         }
     }
 

@@ -46,62 +46,7 @@ void Boom()
 {
     //Let's Move
 
-    ll int n,q;
-    cin>>n>>q;
-
-    ll int arr[n+1]={};
-    ll int pre[n+1]={},xo[n+1]={};
-
-    ll int sum=0,x=0;
-    for(int i=1;i<=n;i++)
-    {
-        cin>>arr[i];
-        if(i==1)pre[i]=xo[i]=arr[i];
-        else pre[i]=pre[i-1]+arr[i],xo[i]=xo[i-1]^arr[i];
-    }
-   
-
-   // cerr<<mx<<dl;
-
     
-
-
-    while(q--)
-    {
-        ll int l,r;
-        cin>>l>>r;
-
-        ll int mx=(pre[r-1]-pre[l-1])-(xo[r-1]^xo[l-1]);
-
-        //ll int l=1,r=n;
-    int ansl=l,ansr=r;
-    int p=l;
-    int q=r;
-
-     while(l<=r)
-        {
-            int mid=(l+r)/2;
-            bool ok=false;
-
-            for(int i=p;i<=q-mid+1;i++)
-            {
-                if((pre[i+mid-1]-pre[i-1])-(xo[i+mid-1]^xo[i-1])==mx)
-                {
-                    ansl=i;
-                    ansr=i+mid-1;
-                    ok=true;
-                    break;
-                }
-            }
-
-            if(ok)r=mid-1;
-            else l=mid+1;
-        }
-
-
-
-        cout<<ansl<<sp<<ansr<<dl;
-    }
 
 
 
