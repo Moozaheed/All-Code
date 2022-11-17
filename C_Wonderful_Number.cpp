@@ -1,55 +1,101 @@
 #include<bits/stdc++.h>
 using namespace std;
-#define dl "\n"
-#define sp ' '
-#define ll long long
-#define s string
-#define pb push_back
-#define mp make_pair
-#define pob pop_back
-#define vi vector<int>
-#define vs vector<string>
-#define cY cout<<"YES\n"
-#define cN cout<<"NO\n"
-#define cy cout<<"Yes\n"
-#define cn cout<<"No\n"
-#define Boost ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL)
-bool binary(ll a)
-{
-    s st="";
-    while(a!=0)
+typedef struct Node{
+    int data;
+    Node *left;
+    Node *right;
+    Node(int value)
     {
-      ll rem=a%2;
-      if(rem==0){
-        st =std::to_string((unsigned)rem)+st;
-      }
-      else
-      {st =std::to_string((unsigned)1)+st;}
-      // cout<<st<<dl;
-        a=a/2;
+        data=value;
+        left=NULL;
+        right=NULL;
     }
-    s temp=st;
-   reverse(temp.begin(),temp.end());
-   //437 cout<<temp<<sp<<st<<dl;
-    if(st==temp)return true;
-    else
-        return false;
-}
-bool odd(ll a)
+}Nd;
+void insert_to_left_or_right(Nd *root,int value_of_node)
 {
-  if(a%2!=0)return true;
-  else return false;
+    if(value_of_node>root->data)
+    {
+        if(root->right==NULL)
+            root->right = new Nd(value_of_node);
+        else
+        {
+            insert_to_left_or_right(root->right,value_of_node);
+        }
+    }
+    else
+    {
+        if(root->left==NULL)
+            root->left = new Nd(value_of_node);
+        else
+        {
+            insert_to_left_or_right(root->left,value_of_node);
+        }
+    }
+}
+void inorder(Nd *root)
+{
+    if(root==NULL)
+        return ;
+    Nd* PTR=root;
+    stack<Nd*>st;
+
+    while(PTR!=NULL || !st.empty())
+    {
+        while(PTR!=NULL)
+        {
+            st.push(PTR);
+            PTR=PTR->left;
+        }
+        PTR=st.top();
+        cout<<PTR->data<<" ";
+        st.pop();
+        PTR=PTR->right;
+    }
+}
+void preorder(Nd *root)
+{
+    Nd* PTR=root;
+    stack<Nd*>st;
+    if(root==NULL)return ;
+
+        while(PTR!=NULL)
+        {
+            cout<<PTR->data<<" ";
+            if(PTR->right!=NULL)
+               {
+                  st.push(PTR->right);
+               }
+            if(PTR->left!=NULL)PTR=PTR->left;
+            else
+            {
+                PTR=st.top();
+                st.pop();
+            }
+        }
+        //inorder(root);
 }
 int main()
 {
-  ll a;
-  cin>>a;
- // binary(a);
-  if(odd(a))
-  {if(binary(a))cY;
-  else
-  cN;
-  }
-  else
-    cN;
+    int number_of_node,value_of_node;
+    Nd *root=NULL;
+    cout<<"Enter the number of node :\n";
+    cin>>number_of_node;
+    for(int i=0;i<number_of_node;i++)
+    {
+        cin>>value_of_node;
+        if(root==NULL)
+            root = new Nd(value_of_node);
+        else
+        {
+            insert_to_left_or_right(root,value_of_node);
+        }
+    }
+   /* cout<<root->data<<endl;
+    cout<<root->left->data<<endl;
+    cout<<root->right->data<<endl;*/
+   cout<<"Preorder :\n";
+    preorder(root);
+    cout<<endl;
+   cout<<"Inorder :\n";
+    inorder(root);
 }
