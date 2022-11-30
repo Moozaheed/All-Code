@@ -1,9 +1,21 @@
 //Bismillahir Rahmanir Rahim
 #include<bits/stdc++.h>
+#define ull unsigned long long
 #define ll long long
 #define pb push_back
+#define mp make_pair
+#define pob pop_back
 #define in insert
 #define vi vector<ll int>
+#define vs vector<string>
+#define pii pair<ll int,ll int>
+#define psi pair<string,ll int>
+#define pis pair<ll int,string>
+#define mii map<ll int,ll int>
+#define mib map<ll int,bool>
+#define msi map<string,ll int>
+#define mis map<ll int,string>
+#define S string
 #define fi first
 #define se second
 #define sp ' '
@@ -27,36 +39,47 @@ using namespace std;
 const double PI = acos(-1);
 ll int hp = 1e9+7;
 
+
+
+
 void Boom()
 {
     //Let's Move
 
-    string str;
-    cin>>str;
-    if(str.size()==1)
+    int n,k;
+    cin>>n>>k;
+
+    queue<int>g;
+
+    for(int i=0;i<n;i++)
     {
-        if(str[0]=='Y' || str[0]=='e' || str[0]=='s')cY;
-        else cN;
-        return;
+        int k;
+        cin>>k;
+        g.push(k);
     }
 
-    for(int i=0;i<str.size()-1;i++)
+
+    while(k--)
     {
-        if((str[i]=='Y' && str[i+1]=='e') || (str[i]=='e' && str[i+1]=='s') ||(str[i]=='s' && str[i+1]=='Y'))continue;
-        else{
-            cN;
-            return;
-        }
+        g.pop();
+        g.push(0);
     }
 
-    cY;
+     while (!g.empty()) {
+        cout << g.front()<<sp;
+        g.pop();
+    }
+
+
+
+
 }
 
 int main()
 {
     Boost;
 
-    int t=1;       cin>>t;
+    int t=1;      // cin>>t;
     for(int i=1;i<=t;i++)
     {
         //cout<<"Case "<<i<<" : ";
@@ -66,6 +89,3 @@ int main()
     return 0;
 
 }
-
-
-

@@ -33,7 +33,7 @@
 #define here fprintf(stderr, "====I am Here====\n");
 #define FOR(data) for(auto it=data.begin();it!=data.end();it++)
 #define Boost ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL)
-#define maxx 100005
+#define maxx 210
 #define EPS 1e-9
 using namespace std;
 const double PI = acos(-1);
@@ -42,29 +42,62 @@ ll int hp = 1e9+7;
 
 
 
+
 void Boom()
 {
     //Let's Move
 
-    int n;
-    S s;
-    cin>>n>>s;
+    int n, m;
+	cin >> n >> m;
+	int a[n][m];
+	for(int i = 0; i < n; i++)
+	{
+		for(int j = 0; j < m; j++)
+		{
+			cin >> a[i][j];
+		}
+	}
+	int mx = 0;
+	for(int i = 0; i < n; i++)
+	{
+		for(int j = 0; j < m; j++)
+		{
+			int now = 0;
+			int ci = i, cj = j;
+			while(ci >= 0 && ci < n && cj >= 0 && cj < m)
+			{
+				now+=a[ci][cj];
+				ci--;
+				cj--;
+			}
+			ci = i, cj = j;
+			while(ci >= 0 && ci < n && cj >= 0 && cj < m)
+			{
+				now+=a[ci][cj];
+				ci++;
+				cj--;
+			}
+			ci = i, cj = j;
+			while(ci >= 0 && ci < n && cj >= 0 && cj < m)
+			{
+				now+=a[ci][cj];
+				ci--;
+				cj++;
+			}
+			ci = i, cj = j;
+			while(ci >= 0 && ci < n && cj >= 0 && cj < m)
+			{
+				now+=a[ci][cj];
+				ci++;
+				cj++;
+			}
+			now-=a[i][j]*3;
+			mx = max(mx, now);
+		}
+	}
+	cout << mx << endl;
 
-    ll int ans=0;
 
-    for(int i=0;i<n;i++)
-    {
-        int dif=0;
-        vi cnt(10,0);
-        for(int j=i;j<n;j++)
-        {
-            int c=s[j]-'0';
-            if(cnt[c]==0)dif++;
-            cnt[c]++;
-            if(*max_element(all(cnt))<=dif)ans++;
-        }
-    }
-    
 
 
 

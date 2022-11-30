@@ -1,9 +1,21 @@
 //Bismillahir Rahmanir Rahim
 #include<bits/stdc++.h>
+#define ull unsigned long long
 #define ll long long
 #define pb push_back
+#define mp make_pair
+#define pob pop_back
 #define in insert
 #define vi vector<ll int>
+#define vs vector<string>
+#define pii pair<ll int,ll int>
+#define psi pair<string,ll int>
+#define pis pair<ll int,string>
+#define mii map<ll int,ll int>
+#define mib map<ll int,bool>
+#define msi map<string,ll int>
+#define mis map<ll int,string>
+#define S string
 #define fi first
 #define se second
 #define sp ' '
@@ -27,29 +39,52 @@ using namespace std;
 const double PI = acos(-1);
 ll int hp = 1e9+7;
 
+
+
+ll int power(ll int x,ll int n)
+{
+    if(n==0)
+        return 1;
+    else if(n%2 == 0)
+        return power(x*x,n/2);
+    else  
+        return x*power(x*x,(n-1)/2);
+}
+
 void Boom()
 {
     //Let's Move
 
-    string str;
-    cin>>str;
-    if(str.size()==1)
+    S s,t;
+    cin>>s>>t;
+
+    int cnt=0;
+    for(auto x:t)
     {
-        if(str[0]=='Y' || str[0]=='e' || str[0]=='s')cY;
-        else cN;
+        if(x=='a')cnt++;
+    }
+
+    if(t.size()==1 && cnt==1)
+    {
+        cout<<1<<dl;
         return;
     }
 
-    for(int i=0;i<str.size()-1;i++)
+    if(cnt)
     {
-        if((str[i]=='Y' && str[i+1]=='e') || (str[i]=='e' && str[i+1]=='s') ||(str[i]=='s' && str[i+1]=='Y'))continue;
-        else{
-            cN;
-            return;
-        }
+        cout<<-1<<dl;
+        return;
     }
 
-    cY;
+    cout<<power(2,s.size())<<dl;
+
+    
+
+    
+
+
+
+
 }
 
 int main()
@@ -66,6 +101,3 @@ int main()
     return 0;
 
 }
-
-
-

@@ -1,9 +1,22 @@
+
 //Bismillahir Rahmanir Rahim
 #include<bits/stdc++.h>
+#define ull unsigned long long
 #define ll long long
 #define pb push_back
+#define mp make_pair
+#define pob pop_back
 #define in insert
 #define vi vector<ll int>
+#define vs vector<string>
+#define pii pair<ll int,ll int>
+#define psi pair<string,ll int>
+#define pis pair<ll int,string>
+#define mii map<ll int,ll int>
+#define mib map<ll int,bool>
+#define msi map<string,ll int>
+#define mis map<ll int,string>
+#define S string
 #define fi first
 #define se second
 #define sp ' '
@@ -12,7 +25,7 @@
 #define b() begin()
 #define e() end()
 #define cY cout<<"YES\n"
-#define cN cout<<"NO\n"
+#define cN cout<<-1<<dl;
 #define cy cout<<"Yes\n"
 #define cn cout<<"No\n"
 #define setp(n) setprecision(n)
@@ -27,29 +40,60 @@ using namespace std;
 const double PI = acos(-1);
 ll int hp = 1e9+7;
 
+
+
+
 void Boom()
 {
     //Let's Move
 
-    string str;
-    cin>>str;
-    if(str.size()==1)
-    {
-        if(str[0]=='Y' || str[0]=='e' || str[0]=='s')cY;
-        else cN;
-        return;
-    }
+    int n;
+    cin>>n;
 
-    for(int i=0;i<str.size()-1;i++)
+    int arr[n+1];
+    int brr[n+1];
+
+    map<int,vi>m;
+
+    for(int i=1;i<=n;i++)
     {
-        if((str[i]=='Y' && str[i+1]=='e') || (str[i]=='e' && str[i+1]=='s') ||(str[i]=='s' && str[i+1]=='Y'))continue;
-        else{
+        cin>>arr[i];
+        m[arr[i]].pb(i);
+    }
+    int cnt=1;
+
+    for(auto x:m)
+    {
+        reverse(all(x.se));
+        for(auto y:x.se)
+        {
+            brr[y]=cnt;
+            cnt++;
+        }
+        if(x.se.size()==1)
+        {
             cN;
             return;
         }
+        if(x.se.size()%2==1)
+        {
+            int k=x.se.size()/2;
+            swap(brr[x.se[k]],brr[x.se[k+1]]);
+        }
     }
 
-    cY;
+    for(int i=1;i<=n;i++)
+    {
+        cout<<brr[i]<<sp;
+    }
+
+    cout<<dl;
+
+
+
+
+
+
 }
 
 int main()
@@ -66,6 +110,3 @@ int main()
     return 0;
 
 }
-
-
-

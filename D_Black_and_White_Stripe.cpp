@@ -1,9 +1,21 @@
 //Bismillahir Rahmanir Rahim
 #include<bits/stdc++.h>
+#define ull unsigned long long
 #define ll long long
 #define pb push_back
+#define mp make_pair
+#define pob pop_back
 #define in insert
 #define vi vector<ll int>
+#define vs vector<string>
+#define pii pair<ll int,ll int>
+#define psi pair<string,ll int>
+#define pis pair<ll int,string>
+#define mii map<ll int,ll int>
+#define mib map<ll int,bool>
+#define msi map<string,ll int>
+#define mis map<ll int,string>
+#define S string
 #define fi first
 #define se second
 #define sp ' '
@@ -27,29 +39,45 @@ using namespace std;
 const double PI = acos(-1);
 ll int hp = 1e9+7;
 
+
+
+
 void Boom()
 {
     //Let's Move
 
-    string str;
+    int n,k;
+    cin>>n>>k;
+
+    S str;
     cin>>str;
-    if(str.size()==1)
+
+    int cnt=0;
+    for(int i=0;i<k;i++)
     {
-        if(str[0]=='Y' || str[0]=='e' || str[0]=='s')cY;
-        else cN;
-        return;
+        if(str[i]=='W')cnt++;
+    }
+ //   cerr<<cnt<<sp;
+
+    int mn=cnt;
+    for(int i=k;i<n;i++)
+    {
+
+        if(str[i]=='W')cnt++;
+        if(str[i-k]=='W')cnt--;
+
+       // cerr<<cnt<<sp;
+
+        mn=min(mn,cnt);
     }
 
-    for(int i=0;i<str.size()-1;i++)
-    {
-        if((str[i]=='Y' && str[i+1]=='e') || (str[i]=='e' && str[i+1]=='s') ||(str[i]=='s' && str[i+1]=='Y'))continue;
-        else{
-            cN;
-            return;
-        }
-    }
+   // cerr<<dl;
 
-    cY;
+    cout<<mn<<dl;
+
+
+
+
 }
 
 int main()
@@ -66,6 +94,3 @@ int main()
     return 0;
 
 }
-
-
-

@@ -46,7 +46,7 @@ void Boom()
 {
     //Let's Move
 
-     int first,second;
+   int first,second;
    cin>>first>>second;
    map<string,string>server;
    string name,ip;

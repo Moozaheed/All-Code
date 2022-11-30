@@ -46,28 +46,54 @@ void Boom()
 {
     //Let's Move
 
-    int n;
-    S s;
-    cin>>n>>s;
+    ll int n;
+    cin>>n;
 
-    ll int ans=0;
+    ll int arr[n];
+    ll int cnt3=0;
+    ll int k=0;
+    ll int x=-1;
+    ll int y=-1;
 
     for(int i=0;i<n;i++)
     {
-        int dif=0;
-        vi cnt(10,0);
-        for(int j=i;j<n;j++)
+        cin>>arr[i];
+
+        if(arr[i]==1)k++;
+        else cnt3+=k;
+
+        if(arr[i]==1)y=i;
+        if(x==-1 && arr[i]==0)x=i;
+    }
+
+    ll int cnt=0;
+    ll int j=0;
+    if(y!=-1)
+    {
+        arr[y]=0;
+        for(int i=0;i<n;i++)
         {
-            int c=s[j]-'0';
-            if(cnt[c]==0)dif++;
-            cnt[c]++;
-            if(*max_element(all(cnt))<=dif)ans++;
+            if(arr[i]==1)j++;
+            else cnt+=j;
+        }
+        arr[y]=1;
+    }
+
+    ll int cnt2=0;
+    j=0;
+    if(x!=-1)
+    {
+        arr[x]=1;
+        for(int i=0;i<n;i++)
+        {
+            if(arr[i]==1)j++;
+            else cnt2+=j;
         }
     }
-    
 
+    ///cerr<<cnt<<sp<<cnt2<<dl;
 
-
+    cout<<max({cnt3,cnt2,cnt})<<dl;
 
 
 }
@@ -86,3 +112,23 @@ int main()
     return 0;
 
 }
+
+
+
+
+ll n,flag=0;
+  cin>>n;
+    if(n==1)cN;
+    else if(n==2)cY;
+    else if(n%2==0)cN;
+    else{
+        for(int i=3;i*i<=n;i++)
+  {
+      if(n%i==0){
+            flag=1;break;}
+  }
+  if(flag==0)cY;
+
+  else
+    cN;
+    }

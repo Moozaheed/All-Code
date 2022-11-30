@@ -1,9 +1,21 @@
 //Bismillahir Rahmanir Rahim
 #include<bits/stdc++.h>
+#define ull unsigned long long
 #define ll long long
 #define pb push_back
+#define mp make_pair
+#define pob pop_back
 #define in insert
 #define vi vector<ll int>
+#define vs vector<string>
+#define pii pair<ll int,ll int>
+#define psi pair<string,ll int>
+#define pis pair<ll int,string>
+#define mii map<ll int,ll int>
+#define mib map<ll int,bool>
+#define msi map<string,ll int>
+#define mis map<ll int,string>
+#define S string
 #define fi first
 #define se second
 #define sp ' '
@@ -27,29 +39,33 @@ using namespace std;
 const double PI = acos(-1);
 ll int hp = 1e9+7;
 
+
+
+
 void Boom()
 {
     //Let's Move
 
-    string str;
-    cin>>str;
-    if(str.size()==1)
-    {
-        if(str[0]=='Y' || str[0]=='e' || str[0]=='s')cY;
-        else cN;
-        return;
-    }
+    int n;
+    cin>>n;
+    int arr[n],brr[n];
+    for(int i=0;i<n;i++)cin>>arr[i],brr[i]=arr[i];
 
-    for(int i=0;i<str.size()-1;i++)
-    {
-        if((str[i]=='Y' && str[i+1]=='e') || (str[i]=='e' && str[i+1]=='s') ||(str[i]=='s' && str[i+1]=='Y'))continue;
-        else{
-            cN;
-            return;
-        }
-    }
+    sort(arr,arr+n);
 
-    cY;
+    int mx=arr[n-1];
+    int mx2=arr[n-2];
+
+    for(int i=0;i<n;i++)
+    {
+        if(brr[i]==mx)cout<<brr[i]-mx2<<" ";
+        else cout<<brr[i]-mx<<" ";
+    }
+    cout<<dl;
+
+
+
+
 }
 
 int main()
@@ -66,6 +82,3 @@ int main()
     return 0;
 
 }
-
-
-

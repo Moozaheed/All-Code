@@ -46,43 +46,11 @@ void Boom()
 {
     //Let's Move
 
+    int n;
+    cin>>n;
     
 
-
-
-
-
-
-int n;
-cin>>n;
-int arr[n];
-
-for(int i=0;i<n;i++)
-{
-    cin>>arr[i];
-    arr[i]+=10;
-}
-
-for(int i=0;i<n;i++)
-{
-    cout<<arr[i]<<" ";
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    cout<<abs(-3)%2<<endl;
 
 
 
@@ -99,7 +67,7 @@ int main()
 {
     Boost;
 
-    int t=1;       //cin>>t;
+    int t=1;      // cin>>t;
     for(int i=1;i<=t;i++)
     {
         //cout<<"Case "<<i<<" : ";
