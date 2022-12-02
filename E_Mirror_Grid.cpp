@@ -48,38 +48,44 @@ void Boom()
 
     int n;
     cin>>n;
-    int arr[n];
-    for(int i=0;i<n;i++)cin>>arr[i];
+    vs s;
 
-    sort(arr,arr+n);
-
-    int x;
-    cin>>x;
-
-    int l=0,r=n-1,ans=-1;
-
-    while(l<=r)
+    for(int i=0;i<n;i++)
     {
-        int mid=l+r/2;
-        if(arr[mid]==x)
-        {
-            ans=mid;
-            break;
-        }
-        else if(arr[mid]>x)
-        {
-            l=mid+1;
-        }
-        else
-        {
-            r=mid-1;
-        }
-
+        S str;
+        cin>>str;
+        s.pb(str);
     }
-    if(ans==-1)cout<<"Not Found"<<endl;
-    else cout<<"found at pos "<<ans<<endl;
+    int cost=0;
 
-    
+    for (int i = 0, k = n - 1; i < n; i++, k--)
+	{
+		for (int j = 0, l = n - 1; j < n; j++, l--) 
+        {
+			int cnt = 0;
+			if (s[i][j] == '1') cnt++;
+			if (s[j][k] == '1') cnt++;
+			if (s[k][l] == '1') cnt++;
+			if (s[l][i] == '1') cnt++;
+			if (cnt > (4 - cnt)) 
+            {
+				s[i][j] = '1';
+				s[j][k] = '1';
+				s[k][l] = '1';
+				s[l][i] = '1';
+				cost += ((4 - cnt));
+			}
+			else 
+            {
+				s[i][j] = '0';
+				s[j][k] = '0';
+				s[k][l] = '0';
+				s[l][i] = '0';
+				cost += cnt;
+			}
+		}
+	}
+	cout << cost << endl;
 
 
 
@@ -90,7 +96,7 @@ int main()
 {
     Boost;
 
-    int t=1;      // cin>>t;
+    int t=1;       cin>>t;
     for(int i=1;i<=t;i++)
     {
         //cout<<"Case "<<i<<" : ";

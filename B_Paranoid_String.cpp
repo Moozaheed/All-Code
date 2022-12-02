@@ -46,40 +46,17 @@ void Boom()
 {
     //Let's Move
 
-    int n;
-    cin>>n;
-    int arr[n];
-    for(int i=0;i<n;i++)cin>>arr[i];
+    ll int n;
+    S s;
+    cin>>n>>s;
 
-    sort(arr,arr+n);
-
-    int x;
-    cin>>x;
-
-    int l=0,r=n-1,ans=-1;
-
-    while(l<=r)
+    ll int cnt=n;
+    for(ll int i=1;i<n;i++)
     {
-        int mid=l+r/2;
-        if(arr[mid]==x)
-        {
-            ans=mid;
-            break;
-        }
-        else if(arr[mid]>x)
-        {
-            l=mid+1;
-        }
-        else
-        {
-            r=mid-1;
-        }
-
+        if(s[i]!=s[i-1])cnt+=i;
     }
-    if(ans==-1)cout<<"Not Found"<<endl;
-    else cout<<"found at pos "<<ans<<endl;
 
-    
+    cout<<cnt<<dl;
 
 
 
@@ -90,7 +67,7 @@ int main()
 {
     Boost;
 
-    int t=1;      // cin>>t;
+    int t=1;       cin>>t;
     for(int i=1;i<=t;i++)
     {
         //cout<<"Case "<<i<<" : ";
