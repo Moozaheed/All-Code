@@ -40,44 +40,62 @@ const double PI = acos(-1);
 ll int hp = 1e9+7;
 
 
+int fun(string str)
+    {
+        map<char,int>mp;
+        mp['I']=1;
+        mp['V']=5;
+        mp['X']=10;
+        mp['L']=50;
+        mp['C']=100;
+        mp['D']=500;
+        mp['M']=1000;
+        reverse(str.begin(),str.end());
+        int cnt=mp[str[0]];
+        for(int i=1;i<str.size();i++)
+        {
+            cnt-=mp[str[i]];
+        }
+        return cnt;
+
+
+    }
+    int romanToInt(string s) {
+        map<char,int>mp;
+        mp['I']=1;
+        mp['V']=5;
+        mp['X']=10;
+        mp['L']=50;
+        mp['C']=100;
+        mp['D']=500;
+        mp['M']=1000;
+        int ans=0;
+        for(int i=0;i<s.size();i++)
+        {
+            string ss;
+            ss.push_back(s[i]);
+            while(i<s.size()-1 && mp[s[i]]<mp[s[i+1]])
+            {
+                ss.push_back(s[i+1]);
+                i++;
+
+            }
+            cerr<<ss<<dl;
+            ans+=fun(ss);
+        }
+        return ans;
+
+    }
+
 
 
 void Boom()
 {
     //Let's Move
 
-    int n;
-    cin>>n;
-    int arr[n];
-    for(int i=0;i<n;i++)cin>>arr[i];
-
-    sort(arr,arr+n);
-
-    int x;
-    cin>>x;
-
-    int l=0,r=n-1,ans=-1;
-
-    while(l<=r)
-    {
-        int mid=l+r/2;
-        if(arr[mid]==x)
-        {
-            ans=mid;
-            break;
-        }
-        else if(arr[mid]>x)
-        {
-            l=mid+1;
-        }
-        else
-        {
-            r=mid-1;
-        }
-
-    }
-    if(ans==-1)cout<<"Not Found"<<endl;
-    else cout<<"found at pos "<<ans<<endl;
+    S str;
+    cin>>str;
+    cout<<romanToInt(str);
 
     
 
