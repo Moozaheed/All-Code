@@ -39,12 +39,53 @@ using namespace std;
 const double PI = acos(-1);
 ll int hp = 1e9+7;
 
+
+
+
 void Boom()
 {
     //Let's Move
 
-    char*s="EEE";
-    while(*s!=NULL)printf("%c",*++s);
+    int n,k;
+    cin>>n>>k;
+ 
+    if(k==0){
+        for(int i=1;i<=n;i++){
+            cout<<-1<<sp;
+        }
+        cout<<dl;
+        return;
+    }
+ 
+    int cnt;
+    for(int i=1;i<=n;i++)
+    {
+        if((i*(i+1))/2 <= k)cnt=i;
+        else break;
+    }
+ 
+    int sum=((cnt*(cnt+1))/2);
+    int extra=k-sum;
+    for(int i=1;i<=n;i++)
+    {
+        if(i==cnt+1){
+            if(extra==0)
+            {
+                cout<<-1000<<sp;
+            }
+            else
+            {
+                cout<<-(((cnt-extra+1)*2)-1)<<sp;
+            }
+        }
+        else if(i<=cnt){
+            cout<<2<<sp;
+        }
+        else if(i>cnt+1){
+            cout<<-1000<<sp;
+        }
+    }
+    cout<<dl;
 
 
 
@@ -55,7 +96,7 @@ int main()
 {
     Boost;
 
-    int t=1;      // cin>>t;
+    int t=1;       cin>>t;
     for(int i=1;i<=t;i++)
     {
         //cout<<"Case "<<i<<" : ";

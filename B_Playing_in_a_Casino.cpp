@@ -39,23 +39,63 @@ using namespace std;
 const double PI = acos(-1);
 ll int hp = 1e9+7;
 
+
+
+
 void Boom()
 {
     //Let's Move
 
-    char*s="EEE";
-    while(*s!=NULL)printf("%c",*++s);
+    int n,m;
+    cin>>n>>m;
+    int arr[m][n];
+    int pre[m][n]={0};
+
+    vector<vi>ok;
+    for(int i=0;i<m;i++)
+    {
+        vi po;
+        for(int j=0;j<n;j++)
+        {
+            cin>>arr[j][i];
+            if(po.size()==0)
+            {
+                po.pb(arr[j][i]);
+            }
+            else
+            {
+                po.pb(arr[j][i]+po[po.size()-1]);
+            }
+        }
+        ok.pb(po);
+
+    }
 
 
 
+    for(int i=0;i<m;i++)
+    {
+        for(int j=0;j<n;j++)
+        cout<<arr[j][i]<<sp;
+        cout<<dl;
+    }
+    cout<<dl;
 
+    for(auto x:ok)
+    {
+        for(auto y:x)
+        {
+            cout<<y<<sp;
+        }
+        cout<<dl;
+    }
 }
 
 int main()
 {
     Boost;
 
-    int t=1;      // cin>>t;
+    int t=1;       cin>>t;
     for(int i=1;i<=t;i++)
     {
         //cout<<"Case "<<i<<" : ";

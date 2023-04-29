@@ -39,12 +39,33 @@ using namespace std;
 const double PI = acos(-1);
 ll int hp = 1e9+7;
 
+//https://codeforces.com/blog/entry/46681
+
+
 void Boom()
 {
     //Let's Move
 
-    char*s="EEE";
-    while(*s!=NULL)printf("%c",*++s);
+     ll n;
+    cin >> n;
+ 
+    if(n%2==0)
+    {
+        ll k = (n*n+4)/4;
+        ll m = k-2;
+ 
+        if(k <= 0 || m <= 0) cout << -1 << dl;
+        else cout << m << sp << k << dl;
+    }
+    else
+    {
+        ll k = (n*n+1)/2;
+        ll m = k - 1;
+ 
+        if(k <= 0 || m <= 0) cout << -1 << dl;
+        else cout << m << sp << k << dl;
+ 
+    }
 
 
 

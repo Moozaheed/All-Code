@@ -1,52 +1,17 @@
-
 #include<bits/stdc++.h>
 using namespace std;
 
-char arr[110][110];
+int main() {
+    int n1, n2, n;
+    cin >> n1 >> n2 >> n;
 
-int dirx[8] = { -1, 0, 0, 1, -1, -1, 1, 1 };
-int diry[8] = { 0, 1, -1, 0, -1, 1, -1, 1 };
-int ROW,COL;
-bool isValid(int row, int col)
-{
-    if (row < 0 || col < 0 || row >= ROW || col >= COL)
-        return true;
-    if (arr[row][col]=='.')
-        return false;
-    return true;
-}
+    int lcm = (n1 * n2) / __gcd(n1, n2);
+    int minutes = (lcm * n + n1 - 1) / n1;
+    int hours = minutes / 60;
+    minutes %= 60;
+    int next_hour = (n + hours) % 24;
 
-int main()
-{
-    int n,m;
-    cin>>n>>m;
-    ROW=n;
-    COL=m;
-    for(int i=0;i<n;i++)
-    {
-        for(int j=0;j<m;j++)cin>>arr[i][j];
-    }
+    cout << next_hour << " Clock " << minutes << " minute" << endl;
 
-    int a,b;
-    cin>>a>>b;
-    a--,b--;
-
-    for(int i=0;i<8;i++)
-    {
-        int p=a+dirx[i];
-        int q=b+diry[i];
-        
-        if(isValid(p,q)==false)
-        {
-            cout<<"no"<<endl;
-            return 0;
-        }
-
-        
-    }
-
-    cout<<"yes"<<endl;
-
-    
-
+    return 0;
 }
