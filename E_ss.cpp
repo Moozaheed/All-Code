@@ -39,48 +39,49 @@ using namespace std;
 const double PI = acos(-1);
 ll int hp = 1e9+7;
 
-
+int binary(int arr[],int x,int n)
+{
+    int low = 0, high = n - 1;
+    while (low <= high)
+    {
+        int mid = low + ((high - low) / 2);
+        
+        if(arr[mid] == x)
+            return mid;
+        else if (arr[mid] > x) 
+            high = mid - 1;
+        else
+            low = mid + 1;
+    }
+    return -1;
+}
 
 
 void Boom()
 {
     //Let's Move
 
-    ll int n,k;
-    cin>>n>>k;
+    S str;
+    cin>>str;
 
-    vector<pii>ok;
-    for(ll int i=0;i<n;i++)
+    int n=str.size();
+    n--;
+    if(n%2==1)n--;
+
+    //cout<<str.substr(n/2,n)<<dl;
+
+    while(n)
     {
-        int a,b;
-        cin>>a>>b;
-        ok.pb({a,b});
+        S s1=str.substr(0,n/2);
+        S s2=str.substr(n/2,n/2);
+
+        //cerr<<n<<sp<<s1<<" "<<s2<<endl;
+
+        if(s1==s2)break;
+        else n-=2;  
     }
 
-    sort(all(ok));
-
-    
-    vi ans;
-    ans.pb(ok[0].se);
-
-    for(ll int i=1;i<n;i++)
-    {
-        ok[i].se=ok[i].se+ok[i-1].se;
-        ans.pb(ok[i].se);
-    }
-    // for(auto x:ans)
-    // {
-    //     cerr<<x<<dl;
-    // }
-
-    auto it=lower_bound(all(ans),k)-ans.b();
-    //cerr<<*it<<dl;
-
-    cout<<ok[it].fi<<dl;
-
-
-  
-    
+    cout<<n<<dl;
 
 
 

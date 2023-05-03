@@ -2,20 +2,14 @@
 using namespace std;
 int main()
 {
+  long long int a,b,c,d;
+  scanf("%lld %lld %lld %lld",&a,&b,&c,&d);
+  
+  
+  if(d>a || b<c)printf("-1");
 
-  //Digit Count
-  int n;
-  cin>>n;
-
-  int cnt=0;
- 
-  while(n!=0)
+  else
   {
-    cnt++;
-    n/=10;
+    cout<<max(a,c)<<sp<<min(b,d)<<endl;
   }
-
-  cout<<cnt<<endl;
- 
-
 }

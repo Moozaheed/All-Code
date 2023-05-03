@@ -40,64 +40,24 @@ const double PI = acos(-1);
 ll int hp = 1e9+7;
 
 
-
-
-void Boom()
-{
-    //Let's Move
-
-    ll int n,k;
-    cin>>n>>k;
-
-    vector<pii>ok;
-    for(ll int i=0;i<n;i++)
+int main(){
+    int w,h,n;
+    cin >> w >> h >> n;
+    int x,y,a;
+    int left = 0;
+    int right = w;
+    int up = h;
+    int bottom = 0;
+    for(int i=0;i<n;i++)
     {
-        int a,b;
-        cin>>a>>b;
-        ok.pb({a,b});
+        cin >> x >> y >> a;
+        if(a == 1) left = max(left,x);
+        if(a == 2) right = min(right,x);
+        if(a == 3) bottom = max(bottom,y);
+        if(a == 4) up = min(up,y);
     }
-
-    sort(all(ok));
-
-    
-    vi ans;
-    ans.pb(ok[0].se);
-
-    for(ll int i=1;i<n;i++)
-    {
-        ok[i].se=ok[i].se+ok[i-1].se;
-        ans.pb(ok[i].se);
-    }
-    // for(auto x:ans)
-    // {
-    //     cerr<<x<<dl;
-    // }
-
-    auto it=lower_bound(all(ans),k)-ans.b();
-    //cerr<<*it<<dl;
-
-    cout<<ok[it].fi<<dl;
-
-
-  
-    
-
-
-
-
-}
-
-int main()
-{
-    Boost;
-
-    int t=1;      // cin>>t;
-    for(int i=1;i<=t;i++)
-    {
-        //cout<<"Case "<<i<<" : ";
-        Boom();
-    }
-
+    if(left >= right || up <= bottom) cout << 0 << endl;
+    else cout << (right-left)*(up-bottom) << endl;
     return 0;
-
 }
+

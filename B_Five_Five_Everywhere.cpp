@@ -40,64 +40,24 @@ const double PI = acos(-1);
 ll int hp = 1e9+7;
 
 
-
-
-void Boom()
+bool f(ll int n)
 {
-    //Let's Move
-
-    ll int n,k;
-    cin>>n>>k;
-
-    vector<pii>ok;
-    for(ll int i=0;i<n;i++)
-    {
-        int a,b;
-        cin>>a>>b;
-        ok.pb({a,b});
-    }
-
-    sort(all(ok));
-
-    
-    vi ans;
-    ans.pb(ok[0].se);
-
-    for(ll int i=1;i<n;i++)
-    {
-        ok[i].se=ok[i].se+ok[i-1].se;
-        ans.pb(ok[i].se);
-    }
-    // for(auto x:ans)
-    // {
-    //     cerr<<x<<dl;
-    // }
-
-    auto it=lower_bound(all(ans),k)-ans.b();
-    //cerr<<*it<<dl;
-
-    cout<<ok[it].fi<<dl;
-
-
-  
-    
-
-
-
-
+    for(ll int i=2;i*i<=n;i++)
+    if(n%i==0)return 0;
+    return 1;
 }
-
 int main()
 {
-    Boost;
-
-    int t=1;      // cin>>t;
-    for(int i=1;i<=t;i++)
+    ll int n;
+    cin>>n;
+    for(ll int i=7;i<=5555;i=i+10)
     {
-        //cout<<"Case "<<i<<" : ";
-        Boom();
+        cerr<<i<<sp;
+        if(f(i))
+        {
+            n--;
+            cout<<i<<dl;
+            if(!n)break;
+        }
     }
-
-    return 0;
-
 }
