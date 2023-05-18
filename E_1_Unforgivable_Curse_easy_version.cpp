@@ -41,66 +41,35 @@ ll int hp = 1e9+7;
 
 
 
+ll ok(string a, string b)
+{
+    sort(all(a));
+    sort(all(b));
+    return a==b;
+}
+ 
 
 void Boom()
 {
-    //Let's Move
-
-    int n,k;
-    cin>>n>>k;
-    S s1,s2;
-    cin>>s1>>s2;
-
-    vector<int>pos;
-    map<int,int>ok;
-
-    for(int i=0;i<n;i++)
-    {
-        if(s1[i]!=s2[i])
-        {
-            pos.pb(i);
-            ok[i]=1;
-        }
-    }
-
-    //cerr<<ok[100]<<dl;
-
-   
-    for(auto x:pos)
-    {
-        cerr<<x<<sp;
-    }cerr<<dl;
-
-     if(k<pos.size()/2)
+    ll n,k;
+    string s,t;
+    cin>>n>>k>>s>>t;
+    if(!ok(s,t))
     {
         cN;
         return;
     }
-
-
-    for(auto x:pos)
+    for(ll i=0; i<n; i++)
     {
-       // cerr<<x<<sp;
-        if(ok[x+3]==1 || ok[x+4]==1 || ok[x-3]==1 || ok[x-4]==1)
-        {
-
-        }
-        else
+        if(s[i]==t[i])continue;
+        if(i-k<0 && i+k>=n)
         {
             cN;
             return;
         }
     }
-
-   cY;
-
-
-
-
-
-
+    cY;
 }
-
 int main()
 {
     Boost;

@@ -1,0 +1,1 @@
+{"name":"Local: set","url":"c:\\Users\\giyas\\OneDrive\\Documents\\GitHub\\All-Code\\set.cpp","tests":[{"id":1683556647508,"input":"8\n1 9\n1 6\n1 10\n1 4\n3 6\n3 14\n2 6\n3 6","output":"Yes\nNo\nNo"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\giyas\\OneDrive\\Documents\\GitHub\\All-Code\\set.cpp","group":"local","local":true}

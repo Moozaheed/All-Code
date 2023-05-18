@@ -1,15 +1,16 @@
-#include<bits/stdc++.h>
-using namespace std;
-int main()
+int binary(int arr[],int x,int n)
 {
-  long long int a,b,c,d;
-  scanf("%lld %lld %lld %lld",&a,&b,&c,&d);
-  
-  
-  if(d>a || b<c)printf("-1");
-
-  else
-  {
-    cout<<max(a,c)<<sp<<min(b,d)<<endl;
-  }
+    int low = 0, high = n - 1;
+    while (low <= high)
+    {
+        int mid = low + ((high - low) / 2);
+        
+        if(arr[mid] == x)
+            return mid;
+        else if (arr[mid] > x) 
+            high = mid - 1;
+        else
+            low = mid + 1;
+    }
+    return -1;
 }

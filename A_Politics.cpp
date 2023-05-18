@@ -47,82 +47,28 @@ void Boom()
     //Let's Move
 
     int n,k;
-    cin>>n>>k;
-    char arr[n][k];
+	cin >> n >> k;
+	string str;
+	cin >> str;
+	if(n==1)
+	{
+		cout << 1 << dl;
+		return;
+	}
+	int ans=0;
+	for(int i=1; i<n; i++){
+		string s;
+		cin >> s;
+		int cnt=0;
+		for(int j=0; j<k; j++)
+		{
+			if(s[j]!=str[j]) break;
+			else cnt++;
+		}
+		if(cnt==k) ans++;
+	}
+	cout << (ans==0?1:ans+1) << dl;
 
-    for(int i=0;i<n;i++)
-    {
-        for(int j=0;j<k;j++)
-        {
-            cin>>arr[i][j];
-        }
-    }
-
-    // int ans[n];
-    // for(int i=0;i<n;i++)ans[i]=1;
-
-
-    vi ans(n,1);
-    
-
-
-
-
-    for(int j=0;j<k;j++)
-    {
-        
-        vi pos,neg;
-        for(int i=0;i<n;i++)
-        {
-            if(ans[i]==0)continue;
-            if(arr[i][j]=='+')
-            {
-                pos.pb(i);
-            }
-            else neg.pb(i);
-        }
-
-       cerr<<pos.size()<<sp<<neg.size()<<dl;
-
-        for(auto x:pos)cerr<<x<<sp;
-        cerr<<dl;
-        for(auto x:neg)cerr<<x<<sp;
-        cerr<<dl;
-
-        if(pos.size()>neg.size())
-        {
-            for(auto x:neg)
-            {
-                ans[x]=0;
-            }
-        }
-        else if(pos.size()<neg.size())
-        {
-             for(auto x:pos)
-            {
-                ans[x]=0;
-            }
-        }
-        else{
-             for(auto x:pos)
-            {
-                ans[x]=0;
-            }
-             for(auto x:neg)
-            {
-                ans[x]=0;
-            }
-        }
-
-  
-  for(auto x:ans)cout<<x<<sp;
-        cout<<dl;
-        
-    }
-
-
-    cout<<dl;
-    cerr<<dl;
 
 
 

@@ -1,17 +1,10 @@
-
-#include<bits/stdc++.h>
+#include<stdio.h>
+#include<math.h>
 int main()
 {
-int n;
-scanf("%d", &n);
-
-//n=10;
-for(int i=0;i<=n;i+=2)
-{
-    printf("%d ",i);
-}
-
-
-
-
+    for(int i=0;i<6;i++)
+    {
+        int k=pow(3,i);
+        printf("%d ",k);
+    }
 }
