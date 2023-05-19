@@ -1,16 +1,23 @@
-int binary(int arr[],int x,int n)
+#include <bits/stdc++.h>
+using namespace std;
+int main()
 {
-    int low = 0, high = n - 1;
-    while (low <= high)
+    while(true)
     {
-        int mid = low + ((high - low) / 2);
-        
-        if(arr[mid] == x)
-            return mid;
-        else if (arr[mid] > x) 
-            high = mid - 1;
-        else
-            low = mid + 1;
+        int n,m;
+        cin>>n>>m;
+        if(n>m)swap(n,m);
+        if(n<=0 || m<=0)
+        {
+            break;
+        }
+        int sum=0;
+        for(int i=n;i<=m;i++)
+        {
+            cout<<i<<" ";
+            sum+=i;
+        }
+        cout<<"sum ="<<sum<<endl;
     }
-    return -1;
+
 }
