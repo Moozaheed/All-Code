@@ -40,45 +40,41 @@ const double PI = acos(-1);
 ll int hp = 1e9+7;
 
 
-int fun(S str,int k)
+
+const int N=2e5;
+vector<pii> adj[N];
+int ans=0;
+ 
+void dfs(int u, int p, int ind, int z=0) 
 {
-    int n=0;
-    int z=0,o=0,m=0;
-    for(int i=0;i<=k;i++)
+	ans=max(ans,z);
+	for(auto e:adj[u]) 
     {
-        if(str[i]=='0')z++;
-        else o++;
-    }
-    for(int i=k+1;i<str.size();i++)
-    {
-        if(str[i]=='0')m++;
-        else n++;
-    }
-
-    //cerr<<z<<sp<<o<<sp<<n<<sp<<m<<dl;
-
-    return min({z+n,o+m});
+		int v=e.fi, i=e.se;
+		if (v==p) continue;
+		dfs(v,u,i,z+(i<ind));
+	}
 }
-
-
-void Boom()
+ 
+void Boom() 
 {
-    //Let's Move
+ 
+	int n; 
+    cin>>n; 
+    for(int i=0;i<n;i++) adj[i].clear();
 
-    S s;
-    cin>>s;
-
-    int n=s.size();
-    int ans=n;
-    for(int i=0;i<n;i++)
+	for(int i=0;i<n-1;i++) 
     {
-        ans=min(ans,fun(s,i));
-
-    }
-
-    cout<<ans<<dl;
-
-
+		int u,v; 
+        cin>>u>>v; 
+        --u, --v;
+		adj[u].pb({v,i}); 
+        adj[v].pb({u,i});
+	}
+	ans=0;
+	dfs(0,-1,-1);
+	cout<<ans+1<<'\n';
+ 
 }
 
 int main()
@@ -95,3 +91,4 @@ int main()
     return 0;
 
 }
+

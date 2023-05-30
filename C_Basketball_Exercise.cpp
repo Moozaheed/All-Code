@@ -39,44 +39,41 @@ using namespace std;
 const double PI = acos(-1);
 ll int hp = 1e9+7;
 
+ll dp[3][100001] , ar[3][100001] , n;
 
-int fun(S str,int k)
+ll getMeAns(int pos , int track)
 {
-    int n=0;
-    int z=0,o=0,m=0;
-    for(int i=0;i<=k;i++)
-    {
-        if(str[i]=='0')z++;
-        else o++;
-    }
-    for(int i=k+1;i<str.size();i++)
-    {
-        if(str[i]=='0')m++;
-        else n++;
-    }
-
-    //cerr<<z<<sp<<o<<sp<<n<<sp<<m<<dl;
-
-    return min({z+n,o+m});
+	if(pos > n)return 0;
+	
+	if(dp[track][pos] != -1) return dp[track][pos];
+		
+	if(track == 1)
+	{
+		return dp[track][pos] = max(ar[2][pos] + getMeAns(pos+1 , 2) , getMeAns(pos+1 , 1));
+	}
+	else
+	{
+		return dp[track][pos] = max(ar[1][pos] + getMeAns(pos+1, 1) , getMeAns(pos+1 , 2));
+	}
 }
-
 
 void Boom()
 {
     //Let's Move
 
-    S s;
-    cin>>s;
+    cin>>n;
+	
+	for (int i = 1; i <= n; i++)
+		dp[1][i] = dp[2][i] = -1;
+	for (int i = 1; i <= n; i++)
+		cin>>ar[1][i];
+	
+	for (int i = 1; i <= n; i++)
+		cin>>ar[2][i];
+		
+	cout<<max(getMeAns(1 , 1)  , getMeAns(1 , 2));
+  
 
-    int n=s.size();
-    int ans=n;
-    for(int i=0;i<n;i++)
-    {
-        ans=min(ans,fun(s,i));
-
-    }
-
-    cout<<ans<<dl;
 
 
 }
@@ -85,7 +82,7 @@ int main()
 {
     Boost;
 
-    int t=1;       cin>>t;
+    int t=1;      // cin>>t;
     for(int i=1;i<=t;i++)
     {
         //cout<<"Case "<<i<<" : ";

@@ -40,43 +40,28 @@ const double PI = acos(-1);
 ll int hp = 1e9+7;
 
 
-int fun(S str,int k)
-{
-    int n=0;
-    int z=0,o=0,m=0;
-    for(int i=0;i<=k;i++)
-    {
-        if(str[i]=='0')z++;
-        else o++;
-    }
-    for(int i=k+1;i<str.size();i++)
-    {
-        if(str[i]=='0')m++;
-        else n++;
-    }
-
-    //cerr<<z<<sp<<o<<sp<<n<<sp<<m<<dl;
-
-    return min({z+n,o+m});
-}
 
 
 void Boom()
 {
     //Let's Move
 
-    S s;
-    cin>>s;
+    int n;
+    cin>>n;
 
-    int n=s.size();
-    int ans=n;
+    int arr[n];
+
+    for(int i=0;i<n;i++)cin>>arr[i];
+
     for(int i=0;i<n;i++)
     {
-        ans=min(ans,fun(s,i));
-
+        cout<<n-arr[i]+1<<sp;
     }
+    cout<<dl;
 
-    cout<<ans<<dl;
+
+
+
 
 
 }

@@ -39,44 +39,37 @@ using namespace std;
 const double PI = acos(-1);
 ll int hp = 1e9+7;
 
-
-int fun(S str,int k)
-{
-    int n=0;
-    int z=0,o=0,m=0;
-    for(int i=0;i<=k;i++)
-    {
-        if(str[i]=='0')z++;
-        else o++;
-    }
-    for(int i=k+1;i<str.size();i++)
-    {
-        if(str[i]=='0')m++;
-        else n++;
-    }
-
-    //cerr<<z<<sp<<o<<sp<<n<<sp<<m<<dl;
-
-    return min({z+n,o+m});
-}
-
+const int N=2e5 + 5;
+ll int a[N], b[N], pos[N];
+mii ok;
 
 void Boom()
 {
     //Let's Move
 
-    S s;
-    cin>>s;
+    
 
-    int n=s.size();
-    int ans=n;
-    for(int i=0;i<n;i++)
-    {
-        ans=min(ans,fun(s,i));
+    ll int n;
+    cin >> n;
+	for(int i = 1; i <= n; i++)
+	{
+		cin >> a[i];
+		pos[a[i]] = i;
+	}
+	for(int i = 1; i <= n; i++)
+		cin >> b[i];
+	for(int i = 1; i <= n; i++)
+	{
+		ll int cur = pos[b[i]] - i;
+		if(cur < 0)cur += n;
+		ok[cur]++;
+	}
+	ll int ans = 0;
+	for(auto it:ok)
+		ans = max(ans, it.se);
+	cout << ans;
 
-    }
 
-    cout<<ans<<dl;
 
 
 }
@@ -85,7 +78,7 @@ int main()
 {
     Boost;
 
-    int t=1;       cin>>t;
+    int t=1;      // cin>>t;
     for(int i=1;i<=t;i++)
     {
         //cout<<"Case "<<i<<" : ";

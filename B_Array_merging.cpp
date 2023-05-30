@@ -40,43 +40,60 @@ const double PI = acos(-1);
 ll int hp = 1e9+7;
 
 
-int fun(S str,int k)
-{
-    int n=0;
-    int z=0,o=0,m=0;
-    for(int i=0;i<=k;i++)
-    {
-        if(str[i]=='0')z++;
-        else o++;
-    }
-    for(int i=k+1;i<str.size();i++)
-    {
-        if(str[i]=='0')m++;
-        else n++;
-    }
-
-    //cerr<<z<<sp<<o<<sp<<n<<sp<<m<<dl;
-
-    return min({z+n,o+m});
-}
 
 
 void Boom()
 {
     //Let's Move
 
-    S s;
-    cin>>s;
+    ll int n;
+    cin>>n;
 
-    int n=s.size();
-    int ans=n;
-    for(int i=0;i<n;i++)
+    vi ok1(n),ok2(n);
+    set <int>ok;
+
+    for(ll int i=0;i<n;i++)cin>>ok1[i],ok.in(ok1[i]);    
+    for(ll int i=0;i<n;i++)cin>>ok2[i],ok.in(ok2[i]);  
+
+    ll int cnt=1;
+    ll int cnt1=1;
+
+    map<ll int,ll int>pp,pp2;
+
+    for(int i=1;i<n;i++)
     {
-        ans=min(ans,fun(s,i));
+        if(ok1[i]==ok1[i-1])cnt++;
+        else
+        {
+            pp[ok1[i-1]]=max(pp[ok1[i-1]],cnt);
+            cnt=1;
+        }
 
+        if(ok2[i]==ok2[i-1])cnt1++;
+        else
+        {
+            pp2[ok2[i-1]]=max(pp2[ok2[i-1]],cnt1);
+            cnt1=1;
+        }
+    }
+    pp[ok1[n-1]]=max(pp[ok1[n-1]],cnt);
+    pp2[ok2[n-1]]=max(pp2[ok2[n-1]],cnt1);
+
+    //cerr<<cnt<<sp<<cnt1<<dl;
+
+    ll int ans=0;
+    for(auto x:ok)
+    {
+        ans=max(ans,pp[x]+pp2[x]);
     }
 
     cout<<ans<<dl;
+
+ //  cout<<max({ans,mx1,mx})<<dl;
+
+
+
+
 
 
 }
