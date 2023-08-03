@@ -64,48 +64,32 @@ void Boom()
 {
     //Let's Move
 
-    int n,q;
-    cin>>n>>q;
-    S s;
-    cin>>s;
-
-    map<char,int>ok;
-    for(auto x:s)ok[x]++;
+    ll int n,k;
+    cin>>n>>k;
 
     
 
-    while(q--)
-    {
-        S str;
-        cin>>str;
-
-        if(str.size()==1)
+    vector<ll int> divi;
+    int root=sqrt(n);
+    for (int i=1; i<=root; i++)
         {
-            cout<<ok[str[0]]<<dl;
-            continue;
+            if (n%i == 0)
+            {
+                if (n/i == i)divi.pb(i);
+                else
+                {
+                divi.pb(i);
+                divi.pb(n/i);
+                }
+            }
         }
 
-        int j=0;
-        int cnt=0;
-        
+        sort(all(divi));
 
-        for(int i=0;i<n-str.size()+1;)
-        {
-            while(i<s.size() && j<str.size() && s[i]==str[j])
-            {
-                j++;
-                i++;
-            }
+        if(k>divi.size())cout<<-1<<dl;
+        else cout<<divi[k-1]<<dl;
 
-            if(j==str.size())
-            {
-                cnt++;
-            }
-            j=0;
-        }
-
-        cout<<cnt<<dl;
-    }
+	
     
 
 

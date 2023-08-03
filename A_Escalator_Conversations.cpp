@@ -58,54 +58,58 @@ string inttostr(ll x){string s;while(x){s+=(char)(x%10)+'0';x/=10;}reverse(all(s
 ll strtoint(string s){istringstream ss(s);ll n;ss>>n;return n;}
 ll ceil(ll x,ll y){return (x+(y-1))/y;}
 
+int num_conversations(int n, int m, int k, int H, vector<ll int> h) {
+    vector<int> step_heights;
+    for (int i = 1; i <= m; i++) {
+        step_heights.push_back(i * k);
+    }
 
+
+//   cerrall(step_heights);
+
+
+    int cnt = 0;
+
+    for(int i=0;i<n;i++)
+    {
+        int p1=h[i];
+        for(int i=0;i<m;i++)
+        {
+            int p2=p1+step_heights[i];
+            //cerr<<p2<<sp;
+
+            for(int j=0;j<m;j++)
+            {
+                if(i==j)continue;
+                int H1=H;
+                H1+=step_heights[j];
+
+               // cerr<<H1<<dl;
+
+                if(abs(p2-H1)==abs(step_heights[j]-step_heights[i]))cnt++;
+            }
+        }
+    }
+    
+    
+    
+
+    
+    return cnt;
+}
 
 void Boom()
 {
     //Let's Move
 
-    int n,q;
-    cin>>n>>q;
-    S s;
-    cin>>s;
+    int n,m,k,H;
+    cin>>n>>m>>k>>H;
+    vi arr(n);
 
-    map<char,int>ok;
-    for(auto x:s)ok[x]++;
+    for(int i=0;i<n;i++)cin>>arr[i];
 
-    
-
-    while(q--)
-    {
-        S str;
-        cin>>str;
-
-        if(str.size()==1)
-        {
-            cout<<ok[str[0]]<<dl;
-            continue;
-        }
-
-        int j=0;
-        int cnt=0;
-        
-
-        for(int i=0;i<n-str.size()+1;)
-        {
-            while(i<s.size() && j<str.size() && s[i]==str[j])
-            {
-                j++;
-                i++;
-            }
-
-            if(j==str.size())
-            {
-                cnt++;
-            }
-            j=0;
-        }
-
-        cout<<cnt<<dl;
-    }
+   int result = num_conversations(n, m, k, H, arr);
+   cout<<result<<dl;
     
 
 
@@ -120,7 +124,7 @@ int main()
 {
     Boost;
 
-    int t=1;     //  cin>>t;
+    int t=1;       cin>>t;
     for(int i=1;i<=t;i++)
     {
         //cout<<"Case "<<i<<" : ";

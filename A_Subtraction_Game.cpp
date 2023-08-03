@@ -29,9 +29,14 @@
 #define cn cout<<"No\n"
 #define setp(n) setprecision(n)
 #define mem(arr,val) memset(arr,val,sizeof(arr));
-#define debug(x) cerr<<x<<dl;
+#define ddl(x) cerr<<x<<dl;
+#define dsp(x) cerr<<x<<sp;
+#define cdl(x) cout<<x<<dl;
+#define csp(x) cout<<x<<sp;
+#define autox(data) for(auto x:data)
+#define coutall(data) for(auto x:data)cout<<x<<sp;cout<<dl;
+#define cerrall(data) for(auto x:data)cerr<<x<<sp;cerr<<dl;
 #define here fprintf(stderr, "====I am Here====\n");
-#define FOR(data) for(auto it=data.begin();it!=data.end();it++)
 #define Boost ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL)
 #define maxx 100005
 #define EPS 1e-9
@@ -40,56 +45,36 @@ const double PI = acos(-1);
 ll int hp = 1e9+7;
 
 
+ll reverse_num(ll n){ ll tmp=n,ans=0,r;while(tmp){r=tmp%10;ans=ans*10+r;tmp/=10;}return ans;}
+ll gcd(ll a,ll b){return (!b? a:gcd(b,a%b));}
+ll lcm(ll num1, ll num2) { return (num1/gcd(num1, num2))*num2; }
+bool isprime(ll n) { if(n<2) return false; for(ll i=2;i<=sqrt(n);i++){ if(n%i==0)return false;} return true; }
+bool isSquare(ll x){ll sq=sqrt(x);return sq*sq==x;}
+ll mod_inverse(ll a, ll p, ll m){ ll r=1;while(p){if(p%2)r=((r%m)*(a%m))%m;a=((a%m)*(a%m))%m;p/=2;}return r;}
+ll POW(ll a,ll b){if(!b) return 1;ll r=POW(a,b/2);if(b%2) return r*r*a;else return r*r;}
+ll LOG2(ll n){ll v=1,c=0;while(v<=n)c++,v*=2;return c-1;}
+ll LOGX(ll x,ll n){ll v=1,c=0;while(v<=n)c++,v*=x;return c-1;}
+string inttostr(ll x){string s;while(x){s+=(char)(x%10)+'0';x/=10;}reverse(all(s));return s;}
+ll strtoint(string s){istringstream ss(s);ll n;ss>>n;return n;}
+ll ceil(ll x,ll y){return (x+(y-1))/y;}
+
 
 
 void Boom()
 {
     //Let's Move
 
-    ll int n;
-    cin>>n;
-
-    vi ok1(n),ok2(n);
-    set <int>ok;
-
-    for(ll int i=0;i<n;i++)cin>>ok1[i],ok.in(ok1[i]);    
-    for(ll int i=0;i<n;i++)cin>>ok2[i],ok.in(ok2[i]);  
-
-    ll int cnt=1;
-    ll int cnt1=1;
-
-    map<ll int,ll int>pp,pp2;
-
-    for(int i=1;i<n;i++)
+    int a,b;
+    cin>>a>>b;
+    if(a>1)
     {
-        if(ok1[i]==ok1[i-1])cnt++;
-        else
-        {
-            pp[ok1[i-1]]=max(pp[ok1[i-1]],cnt);
-            cnt=1;
-        }
-
-        if(ok2[i]==ok2[i-1])cnt1++;
-        else
-        {
-            pp2[ok2[i-1]]=max(pp2[ok2[i-1]],cnt1);
-            cnt1=1;
-        }
+        cout<<1<<dl;
     }
-    pp[ok1[n-1]]=max(pp[ok1[n-1]],cnt);
-    pp2[ok2[n-1]]=max(pp2[ok2[n-1]],cnt1);
-
-    //cerr<<cnt<<sp<<cnt1<<dl;
-
-    ll int ans=0;
-    for(auto x:ok)
-    {
-        ans=max(ans,pp[x]+pp2[x]);
+    else{
+        cout<<a+b<<dl;
     }
+    
 
-    cout<<ans<<dl;
-
- //  cout<<max({ans,mx1,mx})<<dl;
 
 
 

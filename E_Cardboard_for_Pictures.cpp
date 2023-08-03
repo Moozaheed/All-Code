@@ -38,7 +38,7 @@
 #define cerrall(data) for(auto x:data)cerr<<x<<sp;cerr<<dl;
 #define here fprintf(stderr, "====I am Here====\n");
 #define Boost ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL)
-#define maxx 100005
+#define maxx 1000005
 #define EPS 1e-9
 using namespace std;
 const double PI = acos(-1);
@@ -59,53 +59,63 @@ ll strtoint(string s){istringstream ss(s);ll n;ss>>n;return n;}
 ll ceil(ll x,ll y){return (x+(y-1))/y;}
 
 
+int fun(ll int arr[],ll int n ,ll int c,ll int x)
+{
+    ll int sq=0;
+    for(int i=0;i<n;i++)
+    {
+        ll int k=arr[i]+x+x;
+        k*=k;
+        sq+=k;
+    }
+    if(sq==c) return 2;
+	else if(sq>c) return 1;
+	else return 0;
+}
+
 
 void Boom()
 {
     //Let's Move
 
-    int n,q;
-    cin>>n>>q;
-    S s;
-    cin>>s;
+    ll int n,c;
+    cin>>n>>c;
+    ll int arr[n],sum=0;
+    for(int i=0;i<n;i++)cin>>arr[i];
+    //cerr<<sum<<dl;
 
-    map<char,int>ok;
-    for(auto x:s)ok[x]++;
+    ll int l=0;
+    ll int r=1;
+    while(fun(arr,n,c,r)==0)
+    {
+		r = r*2;
+	}
+	r*=2;
+    ll int mid;
+    while(l<=r)
+    {
+        mid = l + (r - l) / 2;
+        //cerr<<l<<sp<<r<<sp<<mid<<endl;
+
+        int sq=fun(arr,n,c,mid);
+
+        if(sq==2)
+        {
+            break;
+        }
+        if(sq==1)
+        {
+            r=mid-1;
+        }
+        else
+        {
+            l=mid+1;
+        }
+    }
+
+    cout<<mid<<dl;
 
     
-
-    while(q--)
-    {
-        S str;
-        cin>>str;
-
-        if(str.size()==1)
-        {
-            cout<<ok[str[0]]<<dl;
-            continue;
-        }
-
-        int j=0;
-        int cnt=0;
-        
-
-        for(int i=0;i<n-str.size()+1;)
-        {
-            while(i<s.size() && j<str.size() && s[i]==str[j])
-            {
-                j++;
-                i++;
-            }
-
-            if(j==str.size())
-            {
-                cnt++;
-            }
-            j=0;
-        }
-
-        cout<<cnt<<dl;
-    }
     
 
 
@@ -120,7 +130,7 @@ int main()
 {
     Boost;
 
-    int t=1;     //  cin>>t;
+    int t=1;       cin>>t;
     for(int i=1;i<=t;i++)
     {
         //cout<<"Case "<<i<<" : ";

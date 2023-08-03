@@ -48,31 +48,24 @@ void Boom()
 
     int n;
     cin>>n;
-    int arr[n];
+    S str;
+    cin>>str;
 
-    int cnt[n];
-    mem(cnt,0);
-    int ok=0;
-    for(int i=0;i<n;i++)
+    S ans;
+    int j=0;
+    for(int i=1;i<n;i++)
     {
-        cin>>arr[i];
-
-        if(arr[i]==1)
+        if(str[i]==str[j])
         {
-            ok++;
+           // cerr<<i<<sp;
+            ans.pb(str[j]);
+            j=i+1;
+            i++;
         }
-
-        cnt[i]=ok;
     }
+    //cerr<<dl;
 
-    for(int i=0;i<n;i++)
-    {
-        cout<<max(1,i+1-cnt[i])<<sp;
-    }
-
-    cout<<dl;
-
-   
+    cout<<ans<<dl;
 
 
 

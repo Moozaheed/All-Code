@@ -68,7 +68,10 @@
         "stdexcept": "cpp",
         "streambuf": "cpp",
         "typeindex": "cpp",
-        "typeinfo": "cpp"
+        "typeinfo": "cpp",
+        "charconv": "cpp",
+        "optional": "cpp",
+        "string_view": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled",
     "python.testing.unittestArgs": [
@@ -79,5 +82,6 @@
         "*test.py"
     ],
     "python.testing.pytestEnabled": false,
-    "python.testing.unittestEnabled": true
+    "python.testing.unittestEnabled": true,
+    "cph.general.onceMaintainerMessage": false
 }

@@ -29,9 +29,14 @@
 #define cn cout<<"No\n"
 #define setp(n) setprecision(n)
 #define mem(arr,val) memset(arr,val,sizeof(arr));
-#define debug(x) cerr<<x<<dl;
+#define ddl(x) cerr<<x<<dl;
+#define dsp(x) cerr<<x<<sp;
+#define cdl(x) cout<<x<<dl;
+#define csp(x) cout<<x<<sp;
+#define autox(data) for(auto x:data)
+#define coutall(data) for(auto x:data)cout<<x<<sp;cout<<dl;
+#define cerrall(data) for(auto x:data)cerr<<x<<sp;cerr<<dl;
 #define here fprintf(stderr, "====I am Here====\n");
-#define FOR(data) for(auto it=data.begin();it!=data.end();it++)
 #define Boost ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL)
 #define maxx 100005
 #define EPS 1e-9
@@ -40,66 +45,68 @@ const double PI = acos(-1);
 ll int hp = 1e9+7;
 
 
+ll reverse_num(ll n){ ll tmp=n,ans=0,r;while(tmp){r=tmp%10;ans=ans*10+r;tmp/=10;}return ans;}
+ll gcd(ll a,ll b){return (!b? a:gcd(b,a%b));}
+ll lcm(ll num1, ll num2) { return (num1/gcd(num1, num2))*num2; }
+bool isprime(ll n) { if(n<2) return false; for(ll i=2;i<=sqrt(n);i++){ if(n%i==0)return false;} return true; }
+bool isSquare(ll x){ll sq=sqrt(x);return sq*sq==x;}
+ll mod_inverse(ll a, ll p, ll m){ ll r=1;while(p){if(p%2)r=((r%m)*(a%m))%m;a=((a%m)*(a%m))%m;p/=2;}return r;}
+ll POW(ll a,ll b){if(!b) return 1;ll r=POW(a,b/2);if(b%2) return r*r*a;else return r*r;}
+ll LOG2(ll n){ll v=1,c=0;while(v<=n)c++,v*=2;return c-1;}
+ll LOGX(ll x,ll n){ll v=1,c=0;while(v<=n)c++,v*=x;return c-1;}
+string inttostr(ll x){string s;while(x){s+=(char)(x%10)+'0';x/=10;}reverse(all(s));return s;}
+ll strtoint(string s){istringstream ss(s);ll n;ss>>n;return n;}
+ll ceil(ll x,ll y){return (x+(y-1))/y;}
+
 
 
 void Boom()
 {
     //Let's Move
 
-    ll int a,b,c,d;
-    cin>>a>>b>>c>>d;
-
-    int alice_mood = 0;
-	int bob_mood = 0;
-	int jokes_told = 0;
-	
-	while (alice_mood >= 0 && bob_mood >= 0 && a+b+c+d!=0)
-	{
-		//type 1: both Alice and Bob like them;
-		if (alice_mood >= 0 && bob_mood >= 0 && a)
-		{
-			alice_mood++;
-			bob_mood++;
-			jokes_told++;
-            a--;
-		}
-		
-		//type 2: Alice likes them, but Bob doesn't;
-		if (alice_mood >= 0 && bob_mood >= 0 && b)
-		{
-			alice_mood++;
-			bob_mood--;
-			jokes_told++;
-            b--;
-		}
-		
-		//type 3: Bob likes them, but Alice doesn't;
-		if (alice_mood >= 0 && bob_mood >= 0 && c)
-		{
-			alice_mood--;
-			bob_mood++;
-			jokes_told++;
-            c--;
-		}
-		
-		//type 4: neither Alice nor Bob likes them.
-		if (alice_mood >= 0 && bob_mood >= 0 && d)
-		{
-			alice_mood--;
-			bob_mood--;
-			jokes_told++;
-            d--;
-		}
-        cerr<<alice_mood<<sp<<bob_mood<<dl;
-        cerr<<a<<sp<<b<<sp<<c<<sp<<d<<dl;
-
-        cout<<jokes_told<<sp;
-	}
-
-    cout<<jokes_told<<endl;
-
-
+    int n,q;
+    cin>>n>>q;
+    S s;
+    cin>>s;
     
+    while(q--)
+    {
+        S str;
+        cin>>str;
+
+        int j=0;
+        int cnt=0;
+        
+
+        for(int i=0;i<n-str.size();i++)
+        {
+            if(s[i]==str[j])
+            {
+                j++;
+            }
+            else 
+			{
+				j=0;
+				break;
+			}
+
+            if(j==str.size())
+            {
+                cnt++;
+                j=0;
+            }
+        }
+		if(j==str.size())
+		{
+			cnt++;
+		}
+
+        cout<<cnt<<dl;
+    }
+    
+
+
+
 
 
 
@@ -110,7 +117,7 @@ int main()
 {
     Boost;
 
-    int t=1;       cin>>t;
+    int t=1;     //  cin>>t;
     for(int i=1;i<=t;i++)
     {
         //cout<<"Case "<<i<<" : ";

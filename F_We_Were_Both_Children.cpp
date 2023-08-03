@@ -64,48 +64,42 @@ void Boom()
 {
     //Let's Move
 
-    int n,q;
-    cin>>n>>q;
-    S s;
-    cin>>s;
+    int n;
+    cin>>n;
 
-    map<char,int>ok;
-    for(auto x:s)ok[x]++;
-
-    
-
-    while(q--)
+    map<int,int>ok;
+    for(int i=0;i<n;i++)
     {
-        S str;
-        cin>>str;
-
-        if(str.size()==1)
-        {
-            cout<<ok[str[0]]<<dl;
-            continue;
-        }
-
-        int j=0;
-        int cnt=0;
-        
-
-        for(int i=0;i<n-str.size()+1;)
-        {
-            while(i<s.size() && j<str.size() && s[i]==str[j])
-            {
-                j++;
-                i++;
-            }
-
-            if(j==str.size())
-            {
-                cnt++;
-            }
-            j=0;
-        }
-
-        cout<<cnt<<dl;
+        int x;
+        cin>>x;
+        ok[x]++;
     }
+
+    int mx=0;
+
+    for(int i=1;i<=n;i++)
+    {
+        int root=sqrt(i);
+        int sum=0;
+        for (int j=1; j<=root; j++)
+        {
+            if (i%j == 0)
+            {
+                if (i/j == j)
+                {
+                    sum+=ok[j];
+                }
+                else
+                {
+                    sum+=ok[j];
+                    sum+=ok[i/j];
+                }
+            }
+        }
+        mx=max(mx,sum);
+    }
+
+    cout<<mx<<dl;
     
 
 
@@ -120,7 +114,7 @@ int main()
 {
     Boost;
 
-    int t=1;     //  cin>>t;
+    int t=1;       cin>>t;
     for(int i=1;i<=t;i++)
     {
         //cout<<"Case "<<i<<" : ";

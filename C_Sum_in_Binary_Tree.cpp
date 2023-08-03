@@ -46,33 +46,16 @@ void Boom()
 {
     //Let's Move
 
-    int n;
+    ll int n;
     cin>>n;
-    int arr[n];
-
-    int cnt[n];
-    mem(cnt,0);
-    int ok=0;
-    for(int i=0;i<n;i++)
+    ll int sum=0;
+    while(n)
     {
-        cin>>arr[i];
-
-        if(arr[i]==1)
-        {
-            ok++;
-        }
-
-        cnt[i]=ok;
+        sum+=n;
+        n/=2;
     }
 
-    for(int i=0;i<n;i++)
-    {
-        cout<<max(1,i+1-cnt[i])<<sp;
-    }
-
-    cout<<dl;
-
-   
+    cout<<sum<<dl;
 
 
 

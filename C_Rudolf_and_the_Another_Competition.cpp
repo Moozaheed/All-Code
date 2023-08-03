@@ -59,59 +59,80 @@ ll strtoint(string s){istringstream ss(s);ll n;ss>>n;return n;}
 ll ceil(ll x,ll y){return (x+(y-1))/y;}
 
 
+bool comp(pair<ll,ll>x,pair<ll,ll>y)
+{
+//true -- change
+//fasle -- no change
+
+    if(x.first==y.first) return x.se>y.se;
+    return false;
+}
 
 void Boom()
 {
     //Let's Move
 
-    int n,q;
-    cin>>n>>q;
-    S s;
-    cin>>s;
+    ll n, m, h;
+    cin >> n >> m >> h;
 
-    map<char,int>ok;
-    for(auto x:s)ok[x]++;
-
-    
-
-    while(q--)
+    vector<vector<ll >> arr;
+    for (ll i = 0; i < n; i++) 
     {
-        S str;
-        cin>>str;
-
-        if(str.size()==1)
+        vi ok(m);
+        for (ll j = 0; j < m; j++) 
         {
-            cout<<ok[str[0]]<<dl;
-            continue;
+            cin >> ok[j];
         }
-
-        int j=0;
-        int cnt=0;
-        
-
-        for(int i=0;i<n-str.size()+1;)
-        {
-            while(i<s.size() && j<str.size() && s[i]==str[j])
-            {
-                j++;
-                i++;
-            }
-
-            if(j==str.size())
-            {
-                cnt++;
-            }
-            j=0;
-        }
-
-        cout<<cnt<<dl;
+        sort(all(ok));
+        arr.pb(ok);
     }
-    
 
 
+    ll rnk = 1;
+    ll rs = 0, rp = 0;
+    ll t = 0;
+    for (ll i = 0; i < m; i++) 
+    {
+        if (t + arr[0][i] <= h) 
+        {
+            rs++;
+            t += arr[0][i];
+            rp += t;
+            
+        } 
+        else 
+        {
+            break;
+        }
+    }
+
+   // cerr<<rs<<sp<<rp<<sp<<t<<dl;
+
+    for (ll i = 1; i < n; i++) {
+        ll ps = 0, pp = 0;
+        t = 0;
+        for (ll j = 0; j < m; j++) 
+        {
+            if (t + arr[i][j] <= h) 
+            {
+                ps++;
+                t += arr[i][j];
+                pp += t;
+            } 
+            else 
+            {
+                break;
+            }
+        }
+
+        if (ps > rs || (ps == rs && pp < rp)) 
+        {
+            rnk++;
+        }
+    }
 
 
-
+    cout << rnk << endl;
 
 
 }
@@ -120,7 +141,7 @@ int main()
 {
     Boost;
 
-    int t=1;     //  cin>>t;
+    int t=1;       cin>>t;
     for(int i=1;i<=t;i++)
     {
         //cout<<"Case "<<i<<" : ";

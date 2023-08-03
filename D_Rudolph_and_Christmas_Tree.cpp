@@ -58,55 +58,57 @@ string inttostr(ll x){string s;while(x){s+=(char)(x%10)+'0';x/=10;}reverse(all(s
 ll strtoint(string s){istringstream ss(s);ll n;ss>>n;return n;}
 ll ceil(ll x,ll y){return (x+(y-1))/y;}
 
+double tri(double d,double h)
+{
+    return (d*h)/2.0;
+}
+
+double distance(double x1, double y1, double x2, double y2)
+{
+    // Calculating distance
+    double ok=sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2) * 1.0);
+    cerr<<ok<<dl;
+    return ok;
+}
 
 
 void Boom()
 {
     //Let's Move
 
-    int n,q;
-    cin>>n>>q;
-    S s;
-    cin>>s;
+    double d,h;
+    int n;
+    cin>>n>>d>>h;
 
-    map<char,int>ok;
-    for(auto x:s)ok[x]++;
+    double arr[n];
 
-    
+    for(int i=0;i<n;i++)cin>>arr[i];
 
-    while(q--)
+    double sum=tri(d,h);
+    for(int i=1;i<n;i++)
     {
-        S str;
-        cin>>str;
-
-        if(str.size()==1)
-        {
-            cout<<ok[str[0]]<<dl;
-            continue;
-        }
-
-        int j=0;
-        int cnt=0;
         
 
-        for(int i=0;i<n-str.size()+1;)
+
+
+        double y1=abs(arr[i]-arr[i-1]);
+
+        if(y1<h)
         {
-            while(i<s.size() && j<str.size() && s[i]==str[j])
-            {
-                j++;
-                i++;
-            }
-
-            if(j==str.size())
-            {
-                cnt++;
-            }
-            j=0;
+            double y = h , x = d/2;
+            double slp = y/x;
+            double base = d - (2*(y1/slp));
+            double height = h - y1;
+            sum+=tri(d,h);
+            sum-=tri(base,height);
         }
-
-        cout<<cnt<<dl;
+        else
+        {
+            sum+=tri(d,h);
+        }
     }
-    
+
+    cout<< fixed << setprecision(6)<<sum<<dl;
 
 
 
@@ -120,7 +122,7 @@ int main()
 {
     Boost;
 
-    int t=1;     //  cin>>t;
+    int t=1;       cin>>t;
     for(int i=1;i<=t;i++)
     {
         //cout<<"Case "<<i<<" : ";

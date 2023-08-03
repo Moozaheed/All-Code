@@ -59,53 +59,118 @@ ll strtoint(string s){istringstream ss(s);ll n;ss>>n;return n;}
 ll ceil(ll x,ll y){return (x+(y-1))/y;}
 
 
+// bool vis[maxx][maxx];
+// int dist[maxx][maxx];
+int dirx[8] = { -1, 0, 0, 1, -1, -1, 1, 1 };
+int diry[8] = { 0, 1, -1, 0, -1, 1, -1, 1 };
+int ROW,COL;
+
+int arr[110][110];
+bool isValid(int row, int col)
+{
+    if (row <= 0 || col <= 0 || row > ROW || col > COL)
+        return false;
+    // if (vis[row][col])
+    //     return false;
+    return true;
+}
+
 
 void Boom()
 {
     //Let's Move
 
-    int n,q;
-    cin>>n>>q;
-    S s;
-    cin>>s;
+    int n,m,k;
+    cin>>n>>m>>k;
 
-    map<char,int>ok;
-    for(auto x:s)ok[x]++;
-
-    
-
-    while(q--)
+    for(int i=1;i<=100;i++)
     {
-        S str;
-        cin>>str;
-
-        if(str.size()==1)
+        for(int j=1;j<=100;j++)
         {
-            cout<<ok[str[0]]<<dl;
-            continue;
+            arr[i][j]=0;
         }
 
-        int j=0;
-        int cnt=0;
-        
-
-        for(int i=0;i<n-str.size()+1;)
-        {
-            while(i<s.size() && j<str.size() && s[i]==str[j])
-            {
-                j++;
-                i++;
-            }
-
-            if(j==str.size())
-            {
-                cnt++;
-            }
-            j=0;
-        }
-
-        cout<<cnt<<dl;
+        //cout<<dl;
     }
+
+
+    ROW=n;
+    COL=m;
+
+
+    int x,y;
+    cin>>x>>y;
+
+    for(int i=0;i<4;i++)
+    {
+        if(isValid(x+dirx[i],y+diry[i]))
+        {
+            arr[x+dirx[i]][y+diry[i]]=1;
+        }
+    }
+
+    for(int i=1;i<=n;i++)
+    {
+        for(int j=1;j<=m;j++)
+        {
+            cout<<arr[i][j]<<sp;
+        }
+
+        cout<<dl;
+    }
+
+    cout<<dl;
+
+    while(k--)
+    {
+        int x,y;
+        cin>>x>>y;
+
+        for(int i=0;i<4;i++)
+        {
+            if(isValid(x+dirx[i],y+diry[i]))
+            {
+                arr[x+dirx[i]][y+diry[i]]=2;
+            }
+        }
+
+    }
+
+// cout<<"2349675348973495"<<dl;
+
+  for(int i=1;i<=n;i++)
+    {
+        for(int j=1;j<=m;j++)
+        {
+            cout<<arr[i][j]<<sp;
+        }
+
+        cout<<dl;
+    }
+
+    cout<<dl;
+
+
+
+// cout<<"2349675348973495"<<dl;
+
+for(int i=1;i<=n;i++)
+    {
+        for(int j=1;j<=m;j++)
+        {
+            if(arr[i][j]==1)
+            {
+                cY;
+                return;
+            }
+        }
+
+       // cout<<dl;
+    }
+
+    cN;
+
+
     
 
 
@@ -120,7 +185,7 @@ int main()
 {
     Boost;
 
-    int t=1;     //  cin>>t;
+    int t=1;       cin>>t;
     for(int i=1;i<=t;i++)
     {
         //cout<<"Case "<<i<<" : ";

@@ -48,31 +48,14 @@ void Boom()
 
     int n;
     cin>>n;
-    int arr[n];
-
-    int cnt[n];
-    mem(cnt,0);
-    int ok=0;
-    for(int i=0;i<n;i++)
+    int cnt=0;
+    while(n--)
     {
-        cin>>arr[i];
-
-        if(arr[i]==1)
-        {
-            ok++;
-        }
-
-        cnt[i]=ok;
+        int a,b;
+        cin>>a>>b;
+        if(a>b)cnt++;
     }
-
-    for(int i=0;i<n;i++)
-    {
-        cout<<max(1,i+1-cnt[i])<<sp;
-    }
-
-    cout<<dl;
-
-   
+    cout<<cnt<<dl;
 
 
 

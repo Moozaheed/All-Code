@@ -64,48 +64,43 @@ void Boom()
 {
     //Let's Move
 
-    int n,q;
-    cin>>n>>q;
     S s;
     cin>>s;
 
-    map<char,int>ok;
-    for(auto x:s)ok[x]++;
+    int m;
+    cin>>m;
 
-    
+    S l,r;
+    cin>>l>>r;
 
-    while(q--)
-    {
-        S str;
-        cin>>str;
+    vector<string> passwords;
+    int pos=-1;
+    int n=s.size(),j;
+    int fd=0;
 
-        if(str.size()==1)
-        {
-            cout<<ok[str[0]]<<dl;
-            continue;
-        }
+    //cerr << n<<dl;
 
-        int j=0;
-        int cnt=0;
-        
-
-        for(int i=0;i<n-str.size()+1;)
-        {
-            while(i<s.size() && j<str.size() && s[i]==str[j])
+    for (int i = 0; i < m; i++) {
+        for (char digit = l[i]; digit <= r[i]; digit++) {
+            for(j=pos+1;j<n;j++)
             {
-                j++;
-                i++;
+                if(s[j]==digit)
+                {
+                    fd=max(fd,j);
+                    break;
+                }
             }
-
-            if(j==str.size())
+            //cout<<pos<<dl;
+            if(j==n)
             {
-                cnt++;
+                cY;
+                return;
             }
-            j=0;
+           
         }
-
-        cout<<cnt<<dl;
+        pos=max(pos,fd);
     }
+    cN;
     
 
 
@@ -120,7 +115,7 @@ int main()
 {
     Boost;
 
-    int t=1;     //  cin>>t;
+    int t=1;       cin>>t;
     for(int i=1;i<=t;i++)
     {
         //cout<<"Case "<<i<<" : ";
