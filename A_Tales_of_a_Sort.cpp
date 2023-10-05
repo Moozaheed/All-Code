@@ -64,48 +64,27 @@ void Boom()
 {
     //Let's Move
 
-    int n,q;
-    cin>>n>>q;
-    S s;
-    cin>>s;
+    int n;
+    cin>>n;
 
-    map<char,int>ok;
-    for(auto x:s)ok[x]++;
+    vi arr(n),ok(n);
 
-    
+    for(int i=0;i<n;i++)cin>>arr[i];
+    ok=arr;
 
-    while(q--)
+    sort(all(arr));
+
+    int i=n-1;
+    while(i>=0&&arr[i]==ok[i])i--;
+    if(i==-1)
     {
-        S str;
-        cin>>str;
-
-        if(str.size()==1)
-        {
-            cout<<ok[str[0]]<<dl;
-            continue;
-        }
-
-        int j=0;
-        int cnt=0;
-        
-
-        for(int i=0;i<n-str.size()+1;)
-        {
-            while(i<s.size() && j<str.size() && s[i]==str[j])
-            {
-                j++;
-                i++;
-            }
-
-            if(j==str.size())
-            {
-                cnt++;
-            }
-            j=0;
-        }
-
-        cout<<cnt<<dl;
+        cout<<0<<dl;
+        return;
     }
+
+    cout<<arr[i]<<dl;
+
+
     
 
 
@@ -120,7 +99,7 @@ int main()
 {
     Boost;
 
-    int t=1;     //  cin>>t;
+    int t=1;       cin>>t;
     for(int i=1;i<=t;i++)
     {
         //cout<<"Case "<<i<<" : ";
@@ -130,6 +109,3 @@ int main()
     return 0;
 
 }
-
-
-inttostr    

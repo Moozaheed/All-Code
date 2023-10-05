@@ -64,50 +64,9 @@ void Boom()
 {
     //Let's Move
 
-    int n,q;
-    cin>>n>>q;
-    S s;
-    cin>>s;
 
-    map<char,int>ok;
-    for(auto x:s)ok[x]++;
-
-    
-
-    while(q--)
-    {
-        S str;
-        cin>>str;
-
-        if(str.size()==1)
-        {
-            cout<<ok[str[0]]<<dl;
-            continue;
-        }
-
-        int j=0;
-        int cnt=0;
-        
-
-        for(int i=0;i<n-str.size()+1;)
-        {
-            while(i<s.size() && j<str.size() && s[i]==str[j])
-            {
-                j++;
-                i++;
-            }
-
-            if(j==str.size())
-            {
-                cnt++;
-            }
-            j=0;
-        }
-
-        cout<<cnt<<dl;
-    }
-    
-
+int a,b,c,d,x;
+cin>>a
 
 
 
@@ -130,6 +89,3 @@ int main()
     return 0;
 
 }
-
-
-inttostr    

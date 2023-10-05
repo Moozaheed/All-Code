@@ -59,68 +59,59 @@ ll strtoint(string s){istringstream ss(s);ll n;ss>>n;return n;}
 ll ceil(ll x,ll y){return (x+(y-1))/y;}
 
 
-
 void Boom()
 {
-    //Let's Move
-
-    int n,q;
-    cin>>n>>q;
-    S s;
-    cin>>s;
-
-    map<char,int>ok;
-    for(auto x:s)ok[x]++;
-
-    
-
-    while(q--)
-    {
-        S str;
-        cin>>str;
-
-        if(str.size()==1)
+	int N, K;
+    cin >> N >> K;
+    vector<int> A(N);
+ 
+    for (auto &a : A)
+        cin >> a;
+ 
+    auto possible = [&](int goal) -> bool {
+        for (int i = 0; i < N; i++) 
         {
-            cout<<ok[str[0]]<<dl;
-            continue;
-        }
-
-        int j=0;
-        int cnt=0;
-        
-
-        for(int i=0;i<n-str.size()+1;)
-        {
-            while(i<s.size() && j<str.size() && s[i]==str[j])
-            {
-                j++;
-                i++;
+            int have = K;
+ 
+            for (int j = i; j < N; j++) {
+                int required = goal - (j - i);
+ 
+                if (A[j] >= required)
+                    return true;
+ 
+                int need = max(required - A[j], 0);
+ 
+                if (have < need)
+                    break;
+ 
+                have -= need;
             }
-
-            if(j==str.size())
-            {
-                cnt++;
-            }
-            j=0;
         }
-
-        cout<<cnt<<dl;
+ 
+        return false;
+    };
+ 
+    int low = 0, high = int(1e9) + 5;
+ 
+    while (low < high) {
+        int mid = low + (high - low + 1) / 2;
+ 
+        if (possible(mid))
+            low = mid;
+        else
+            high = mid - 1;
     }
-    
-
-
-
-
-
-
-
+ 
+    cout << low << '\n';
+ 
+ 
 }
 
 int main()
 {
     Boost;
 
-    int t=1;     //  cin>>t;
+    int t=1;       cin>>t;
     for(int i=1;i<=t;i++)
     {
         //cout<<"Case "<<i<<" : ";
@@ -130,6 +121,3 @@ int main()
     return 0;
 
 }
-
-
-inttostr    

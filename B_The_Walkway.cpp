@@ -64,48 +64,67 @@ void Boom()
 {
     //Let's Move
 
-    int n,q;
-    cin>>n>>q;
-    S s;
-    cin>>s;
+    ll int n,m,d;
+    cin >> n >> m >> d;
+    ll int arr[m];
+    for(int i=0;i<m;i++)
+    {
+        cin>>arr[i];
+  
+    }
 
-    map<char,int>ok;
-    for(auto x:s)ok[x]++;
+    map<int,int>ans;
+    int pr=1;
+    int nx=arr[0];
+    int cnt=m,df;
+    if(arr[0]!=1)cnt++;
+    for(int i=0;i<m-1;i++)
+    {
+        //cerr<<pr<<sp<<nx<<dl;
+        df=nx-pr;
+        cnt+=df/d;
+        pr=arr[i];
+        nx=arr[i+1];
+    }
+    pr=arr[m-1];
+    nx=n;
+    df=nx-pr;
+    cnt+=df/d;
+    ans[cnt]=1;
+
+    cerr<<cnt<<dl;
+
 
     
 
-    while(q--)
+
+    int p,q;
+    for(int i=0;i<m;i++)
     {
-        S str;
-        cin>>str;
+        if(i==0)p=1;
+        else p=arr[i-1];
 
-        if(str.size()==1)
-        {
-            cout<<ok[str[0]]<<dl;
-            continue;
-        }
+        if(i==m-1)q=n;
+        else q=arr[i+1];
 
-        int j=0;
-        int cnt=0;
-        
 
-        for(int i=0;i<n-str.size()+1;)
-        {
-            while(i<s.size() && j<str.size() && s[i]==str[j])
-            {
-                j++;
-                i++;
-            }
+        int dt=(q-p-1)/d;
 
-            if(j==str.size())
-            {
-                cnt++;
-            }
-            j=0;
-        }
+        cout<<dt<<sp;
 
-        cout<<cnt<<dl;
+        int c=cnt;
+        c--;
+        c+=dt;
+
+        cout<<c<<dl;
+        ans[c]++;
     }
+
+   // cout<<ans.b()->fi<<dl;
+  
+
+    
+    
     
 
 
@@ -120,7 +139,7 @@ int main()
 {
     Boost;
 
-    int t=1;     //  cin>>t;
+    int t=1;       cin>>t;
     for(int i=1;i<=t;i++)
     {
         //cout<<"Case "<<i<<" : ";
@@ -130,6 +149,3 @@ int main()
     return 0;
 
 }
-
-
-inttostr    

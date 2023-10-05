@@ -45,66 +45,72 @@ const double PI = acos(-1);
 ll int hp = 1e9+7;
 
 
-ll reverse_num(ll n){ ll tmp=n,ans=0,r;while(tmp){r=tmp%10;ans=ans*10+r;tmp/=10;}return ans;}
-ll gcd(ll a,ll b){return (!b? a:gcd(b,a%b));}
-ll lcm(ll num1, ll num2) { return (num1/gcd(num1, num2))*num2; }
-bool isprime(ll n) { if(n<2) return false; for(ll i=2;i<=sqrt(n);i++){ if(n%i==0)return false;} return true; }
-bool isSquare(ll x){ll sq=sqrt(x);return sq*sq==x;}
-ll mod_inverse(ll a, ll p, ll m){ ll r=1;while(p){if(p%2)r=((r%m)*(a%m))%m;a=((a%m)*(a%m))%m;p/=2;}return r;}
-ll POW(ll a,ll b){if(!b) return 1;ll r=POW(a,b/2);if(b%2) return r*r*a;else return r*r;}
-ll LOG2(ll n){ll v=1,c=0;while(v<=n)c++,v*=2;return c-1;}
-ll LOGX(ll x,ll n){ll v=1,c=0;while(v<=n)c++,v*=x;return c-1;}
-string inttostr(ll x){string s;while(x){s+=(char)(x%10)+'0';x/=10;}reverse(all(s));return s;}
-ll strtoint(string s){istringstream ss(s);ll n;ss>>n;return n;}
-ll ceil(ll x,ll y){return (x+(y-1))/y;}
-
-
-
-void Boom()
+void printt(priority_queue<pair<char, int>, vector<pair<char, int>>, greater<pair<char, int>>> pq)
 {
-    //Let's Move
-
-    int n;
-    cin>>n;
-
-    map<int,bool>ok;
-
-    for(int i=1;;i=(i+3))
+    while (!pq.empty()) 
     {
-        if(i%n==0)i=-2;
-        while(ok[i])
-        {
-            i++;
-            if(i==n)i=1;
-        }
-        ok[i]=true;
-        cout<<i<<sp;
-
-        if(ok.size()==n)break;
+        auto temp=pq.top();
+        pq.pop();
+        cerr<<temp.first<<sp<<temp.second<<dl;
     }
-
-
-    
-
-
-
-
-
-
-
+    cerr<<endl;
 }
 
-int main()
-{
-    Boost;
+int main() {
+    int t;
+    cin >> t;
 
-    int t=1;       cin>>t;
-    for(int i=1;i<=t;i++)
-    {
-        //cout<<"Case "<<i<<" : ";
-        Boom();
+    while (t--) {
+        int n, k;
+        cin >> n >> k;
+        string s,ans;
+        cin >> s;
+
+         priority_queue<pair<char, int>, vector<pair<char, int>>, greater<pair<char, int>>> pq,nx;
+         for(int i=0;i<n;i++)
+         {
+            pq.push({s[i],i+1});
+         }
+
+
+       printt(pq);
+
+
+
+        int pos=1;
+        while(!pq.empty())
+        {
+            while (!pq.empty() ) 
+            {
+                auto temp=pq.top();
+                pq.pop();
+
+                int p=abs(pos-temp.second);
+                cerr<<p<<sp;
+
+                if(p==0 || p%k==0 || p%2==0)
+                {
+                    ans+=temp.first;
+                    pos++;
+
+                    while(!nx.empty())
+                    {
+                        pq.push(nx.top());
+                        nx.pop();
+                    }
+                }
+                else
+                {
+                    nx.push(temp);
+                }
+            }
+           // pq=nx;
+        }
+
+        cout<<ans<<endl;
+         
+
     }
 
     return 0;
-
 }

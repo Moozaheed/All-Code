@@ -58,59 +58,87 @@ string inttostr(ll x){string s;while(x){s+=(char)(x%10)+'0';x/=10;}reverse(all(s
 ll strtoint(string s){istringstream ss(s);ll n;ss>>n;return n;}
 ll ceil(ll x,ll y){return (x+(y-1))/y;}
 
+struct st
+{
+    S str;
+    ll int val;
+    ll int cg;
+
+};
+
+
+ll int pl(S s)
+{
+    ll int cnt=0;
+    for(int i=0;i<s.size()/2;i++)
+    {
+        if(s[i]==s[s.size()-i-1])
+            continue;
+        else
+            cnt++;
+    }
+
+    return cnt;
+}
+
 
 
 void Boom()
 {
     //Let's Move
 
-    int n,q;
-    cin>>n>>q;
-    S s;
-    cin>>s;
+    ll int n,k;
+    cin>>n>>k;
+    vector<st>ok;
+    ok.pb({"0",0,0});
 
-    map<char,int>ok;
-    for(auto x:s)ok[x]++;
-
-    
-
-    while(q--)
+    for(int i=1;i<=n;i++)
     {
-        S str;
-        cin>>str;
+        S s;
+        cin>>s;
 
-        if(str.size()==1)
-        {
-            cout<<ok[str[0]]<<dl;
-            continue;
-        }
-
-        int j=0;
-        int cnt=0;
-        
-
-        for(int i=0;i<n-str.size()+1;)
-        {
-            while(i<s.size() && j<str.size() && s[i]==str[j])
-            {
-                j++;
-                i++;
-            }
-
-            if(j==str.size())
-            {
-                cnt++;
-            }
-            j=0;
-        }
-
-        cout<<cnt<<dl;
+        ll int cng=pl(s);
+        ok.pb({s,0,cng});
+        // if(i==1)ok.pb({s,0,cng});
+        // else ok.pb({s,0,cng+ok[i-1].cg});
     }
+
+    for(int i=1;i<=n;i++)
+    {
+        ll int x;
+        cin>>x;
+        ok[i].val=x;
+        // if(i==1)ok[i].val=x;
+        // else ok[i].val=x+ok[i-1].val;
+    }
+
+    // for(auto x:ok)
+    // {
+    //     cout<<x.str<<sp<<x.val<<sp<<x.cg<<dl;
+    // }
+
+    int maxEndingHere = arr[0];
+    int maxSoFar = arr[0];
+    int currentStart = 0;
+    int maxStart = 0;
+    int maxEnd = 0;
+
+    for (int i = 1; i <= n; ++i) {
+        if (arr[i] > maxEndingHere + arr[i]) {
+            maxEndingHere = arr[i];
+            currentStart = i;
+        } else {
+            maxEndingHere = maxEndingHere + arr[i];
+        }
+
+        if (maxEndingHere > maxSoFar) {
+            maxSoFar = maxEndingHere;
+            maxStart = currentStart;
+            maxEnd = i;
+        }
+    }
+
     
-
-
-
-
 
 
 
@@ -120,7 +148,7 @@ int main()
 {
     Boost;
 
-    int t=1;     //  cin>>t;
+    int t=1;       cin>>t;
     for(int i=1;i<=t;i++)
     {
         //cout<<"Case "<<i<<" : ";
@@ -132,4 +160,3 @@ int main()
 }
 
 
-inttostr    
